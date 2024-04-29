@@ -1,0 +1,61 @@
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<section th:fragment="businessOwnerSidebar" id="sidebar">
+
+    <a th:href="@{/localBusinessOwner/dashboard}" class="brand">
+        <i class="bx bxs-smile"></i>
+        <span class="text">BusinessOwnerHub</span>
+    </a>
+    <ul class="side-menu top">
+        <li>
+            <a th:href="@{/localBusinessOwner/dashboard}">
+                <i class="bx bxs-dashboard"></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/localBusinessOwner/profile}">
+                <i class="bx bxs-file-plus"></i>
+                <span class="text">Profile</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/localBusinessOwner/addHiddenGem}">
+                <i class="bx bxs-file-plus"></i>
+                <span class="text">Add Hidden Gem</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/localBusinessOwner/hiddenGemInfo}">
+                <i class="bx bx-plus-medical"></i>
+                <span class="text"></span>Hidden Gem information</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/localBusinessOwner/bookings}">
+                <i class="bx bx-plus-medical"></i>
+                <span class="text">Bookings</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="#">
+                <i class="bx bxs-cog"></i>
+                <span class="text">Settings</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/logout}" class="logout">
+                <i class="bx bxs-log-out-circle"></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+
+
+</body>
+
+</html>

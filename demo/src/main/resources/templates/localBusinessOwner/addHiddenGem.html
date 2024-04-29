@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="../../static/css/admin/adding.css">
+    <link rel="icon" href="../../images/logo.png" type="image/icon type" />
+
+
+    <title>AdminHub</title>
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section>
+
+    <!-- CONTENT -->
+    <section id="content">
+        <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav>
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Add Hidden Gem Information</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="dashboard.html">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Add Hidden Gem Information</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="table-data">
+                <div class="order">
+                    <form class="form" action="#" th:action="" th:object="" method="post">
+                        <div class="input-box" >
+							<label for="name">Place</label>
+							<input type="text" id="name" th:field="*{name}" placeholder="Place">
+						</div>
+						<div class="input-box">
+							<label for="description">Description</label>
+							<input type="textarea" id="description" th:field="*{description}" placeholder="Description" >
+						</div>
+						<div class="input-box">
+							<label for="location">Location</label>
+							<input type="text" id="location" th:field="*{location}" placeholder="Location">
+						</div>						
+                        <div class="input-box">
+							<label for="image">Location</label>
+							<input type="file" id="image" th:field="*{image}" placeholder="Image">
+						</div>
+                        <div>
+                            <button type="submit" name="submit" id="submit-button" value="submit">Add Hidden Gem Information</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        <!-- MAIN -->
+    </section>
+</body>
+
+</html>

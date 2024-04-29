@@ -3,13 +3,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <section th:fragment="adminSidebar" id="sidebar">
         
-        <a th:href="@{/admin/index}" class="brand">
+        <a th:href="@{/admin/dashboard}" class="brand">
             <i class="bx bxs-smile"></i>
             <span class="text">AdminHub</span>
         </a>
         <ul class="side-menu top">
             <li>
-                <a th:href="@{/admin/index}">
+                <a th:href="@{/admin/dashboard}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="text">Dashboard</span>
                 </a>
@@ -21,40 +21,46 @@
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin/addDoctor}">
+                <a th:href="@{/admin/addBusinessOwner}">
                     <i class="bx bxs-file-plus"></i>
                     <span class="text">Add Local Business Owner</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin/doctorList}">
+                <a th:href="@{/admin/localBusinessOwners}">
                     <i class="bx bxs-group"></i>
                     <span class="text">Local Business Owners</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/admin/addAdmin}">
+                <a th:href="@{/admin/addTransportation}">
                     <i class="bx bxs-file-plus"></i>
                     <span class="text">Add Transportation</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin/pets}">
+                <a th:href="@{/admin/transportationDetails}">
                     <i class="bx bx-plus-medical"></i>
                     <span class="text">Transportation Details</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin/addAdmin}">
+                <a th:href="@{/admin/addHistoricalPlaces}">
                     <i class="bx bxs-file-plus"></i>
                     <span class="text">Add Historical places</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin/pets}">
+                <a th:href="@{/admin/historicalPlaces}">
                     <i class="bx bx-plus-medical"></i>
                     <span class="text">Historical places</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin/bookings}">
+                    <i class="bx bx-plus-medical"></i>
+                    <span class="text">Bookings</span>
                 </a>
             </li>
         </ul>
