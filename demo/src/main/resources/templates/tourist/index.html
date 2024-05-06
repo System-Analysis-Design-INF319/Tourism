@@ -139,11 +139,17 @@
               <li>
                 <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
               </li>
+
               <li>
                  <a href="/User/login" class="navbar-link" data-nav-link>login</a>
               </li>
-             
-              
+
+              <li>
+                <div class="search-container">
+                  <input type="text" id="searchInput" placeholder="Search for places..." onkeyup="sendproduct(this)">
+                  <div id="prodsearch"><!-- Search results will appear here --></div>
+                </div>
+              </li>
   
             </ul>
   
@@ -812,7 +818,8 @@
       - custom js link
     -->
     <script src="/js/script.js"></script>
-  
+    <script src="/js/JS.js"></script>
+
     <!-- 
       - ionicon link
     -->

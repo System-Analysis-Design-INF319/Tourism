@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        fetch(/search?term=${encodeURIComponent(searchTerm)})
-            .then(response => response.json())
+        fetch(`/search?term=${encodeURIComponent(searchTerm)}`)
+            .then(response => response.json()) 
             .then(data => {
                 prodSearch.style.display = 'block';
                 prodSearch.innerHTML = '';

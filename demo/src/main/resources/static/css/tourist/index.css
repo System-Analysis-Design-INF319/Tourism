@@ -1152,6 +1152,48 @@ address {
 
   .overlay { display: none; }
 
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  #searchInput {
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Makes the input field rounded */
+    padding: 8px 10px;
+    width: 200px; /* Adjust the width as needed */
+    outline: none;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  #searchInput:focus {
+    width: 250px; /* Expands the search bar when focused */
+  }
+  
+  #prodsearch {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensures the dropdown appears above other content */
+    display: none; /* Hide initially */
+  }
+  
+  #prodsearch div {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  #prodsearch div:hover {
+    background-color: #f0f0f0;
+  }
+  
+  #searchInput:focus + #prodsearch {
+    display: block; /* Show results when the search input is focused */
+  }
 
   /**
    * HERO
