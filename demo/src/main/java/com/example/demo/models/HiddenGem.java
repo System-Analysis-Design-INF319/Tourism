@@ -1,8 +1,7 @@
 package com.example.demo.models;
 
-import java.util.List;
+import java.time.LocalTime;
 
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,26 +18,27 @@ public class HiddenGem {
     private String description;
     private String location;
     private String image;
+    private String startDay;
+    private String endDay;
+    private LocalTime startWorkingTime;
+    private LocalTime endWorkingTime;
 
-    @ElementCollection
-    private List<String> days;
-
-    @ElementCollection
-    private List<String> hours;
 
 
     public HiddenGem() {
     }
 
-    public HiddenGem(int id, String name, String city, String description, String location, String image, List<String> days, List<String> hours) {
+    public HiddenGem(int id, String name, String city, String description, String location, String image, String startDay, String endDay, LocalTime startWorkingTime, LocalTime endWorkingTime) {
         this.id = id;
         this.name = name;
         this.city = city;
         this.description = description;
         this.location = location;
         this.image = image;
-        this.days = days;
-        this.hours = hours;
+        this.startDay = startDay;
+        this.endDay = endDay;
+        this.startWorkingTime = startWorkingTime;
+        this.endWorkingTime = endWorkingTime;
     }
 
     public int getId() {
@@ -89,20 +89,36 @@ public class HiddenGem {
         this.image = image;
     }
 
-    public List<String> getDays() {
-        return this.days;
+    public String getStartDay() {
+        return this.startDay;
     }
 
-    public void setDays(List<String> days) {
-        this.days = days;
+    public void setStartDay(String startDay) {
+        this.startDay = startDay;
     }
 
-    public List<String> getHours() {
-        return this.hours;
+    public String getEndDay() {
+        return this.endDay;
     }
 
-    public void setHours(List<String> hours) {
-        this.hours = hours;
+    public void setEndDay(String endDay) {
+        this.endDay = endDay;
+    }
+
+    public LocalTime getStartWorkingTime() {
+        return this.startWorkingTime;
+    }
+
+    public void setStartWorkingTime(LocalTime startWorkingTime) {
+        this.startWorkingTime = startWorkingTime;
+    }
+
+    public LocalTime getEndWorkingTime() {
+        return this.endWorkingTime;
+    }
+
+    public void setEndWorkingTime(LocalTime endWorkingTime) {
+        this.endWorkingTime = endWorkingTime;
     }
 
     public HiddenGem id(int id) {
@@ -135,13 +151,23 @@ public class HiddenGem {
         return this;
     }
 
-    public HiddenGem days(List<String> days) {
-        setDays(days);
+    public HiddenGem startDay(String startDay) {
+        setStartDay(startDay);
         return this;
     }
 
-    public HiddenGem hours(List<String> hours) {
-        setHours(hours);
+    public HiddenGem endDay(String endDay) {
+        setEndDay(endDay);
+        return this;
+    }
+
+    public HiddenGem startWorkingTime(LocalTime startWorkingTime) {
+        setStartWorkingTime(startWorkingTime);
+        return this;
+    }
+
+    public HiddenGem endWorkingTime(LocalTime endWorkingTime) {
+        setEndWorkingTime(endWorkingTime);
         return this;
     }
 
@@ -153,12 +179,12 @@ public class HiddenGem {
             return false;
         }
         HiddenGem hiddenGem = (HiddenGem) o;
-        return id == hiddenGem.id && Objects.equals(name, hiddenGem.name) && Objects.equals(city, hiddenGem.city) && Objects.equals(description, hiddenGem.description) && Objects.equals(location, hiddenGem.location) && Objects.equals(image, hiddenGem.image) && Objects.equals(days, hiddenGem.days) && Objects.equals(hours, hiddenGem.hours);
+        return id == hiddenGem.id && Objects.equals(name, hiddenGem.name) && Objects.equals(city, hiddenGem.city) && Objects.equals(description, hiddenGem.description) && Objects.equals(location, hiddenGem.location) && Objects.equals(image, hiddenGem.image) && Objects.equals(startDay, hiddenGem.startDay) && Objects.equals(endDay, hiddenGem.endDay) && Objects.equals(startWorkingTime, hiddenGem.startWorkingTime) && Objects.equals(endWorkingTime, hiddenGem.endWorkingTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, city, description, location, image, days, hours);
+        return Objects.hash(id, name, city, description, location, image, startDay, endDay, startWorkingTime, endWorkingTime);
     }
 
     @Override
@@ -170,9 +196,12 @@ public class HiddenGem {
             ", description='" + getDescription() + "'" +
             ", location='" + getLocation() + "'" +
             ", image='" + getImage() + "'" +
-            ", days='" + getDays() + "'" +
-            ", hours='" + getHours() + "'" +
+            ", startDay='" + getStartDay() + "'" +
+            ", endDay='" + getEndDay() + "'" +
+            ", startWorkingTime='" + getStartWorkingTime() + "'" +
+            ", endWorkingTime='" + getEndWorkingTime() + "'" +
             "}";
     }
-    
+
+
 }

@@ -1,4 +1,5 @@
 package com.example.demo.controllers;
+
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.models.HiddenGem;
 import com.example.demo.models.user;
 import com.example.demo.repositories.userRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @RestController
 @RequestMapping("/User")
@@ -23,7 +25,6 @@ public class userController {
     @Autowired
     private userRepository userRepository;
 
-   
     @GetMapping("/")
     public ModelAndView getallUsers() {
         ModelAndView mav = new ModelAndView("/tourist/index.html");
@@ -46,8 +47,8 @@ public class userController {
         mav.addObject("user", user);
 
         if (user.isEmpty(user.getFullname()) || user.isEmpty(user.getUsername()) ||
-            user.isEmpty(user.getEmail()) || user.isEmpty(String.valueOf(user.getPhonenumber())) ||
-            user.isEmpty(user.getPassword()) || user.isEmpty(user.getConfirmpassword())) {
+                user.isEmpty(user.getEmail()) || user.isEmpty(String.valueOf(user.getPhonenumber())) ||
+                user.isEmpty(user.getPassword()) || user.isEmpty(user.getConfirmpassword())) {
             mav.addObject("emptyFieldsError", "Please fill in all fields");
             mav.addObject("hasEmptyFieldsError", true);
         } else {
@@ -71,7 +72,7 @@ public class userController {
                     mav.addObject("passwordMatchError", "Passwords do not match");
                     mav.addObject("hasPasswordMatchError", true);
                 }
-               
+
             }
             if (String.valueOf(user.getPhonenumber()).length() != 11) {
                 mav.addObject("phoneNumberError", "Phone number must be 11 digits");
@@ -82,7 +83,7 @@ public class userController {
                     mav.getModel().containsKey("hasEmailError") ||
                     mav.getModel().containsKey("hasPasswordLengthError") ||
                     mav.getModel().containsKey("hasPasswordMatchError") ||
-                    mav.getModel().containsKey("hasEmptyFieldsError")||
+                    mav.getModel().containsKey("hasEmptyFieldsError") ||
                     mav.getModel().containsKey("hasPhoneNumberError"))
                 return mav;
 
@@ -90,7 +91,7 @@ public class userController {
             user.setPassword(encodedPassword);
             String encodedConfirmPassword = BCrypt.hashpw(user.getConfirmpassword(), BCrypt.gensalt(12));
             user.setConfirmpassword(encodedConfirmPassword);
-            
+
             this.userRepository.save(user);
 
             return new ModelAndView("redirect:/User/login");
@@ -103,17 +104,17 @@ public class userController {
         return existingUser != null;
     }
 
-
     @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView("/tourist/login.html");
         mav.addObject("username");
         return mav;
     }
+
     @GetMapping("/index")
     public ModelAndView viewIndex(HttpSession session) {
         ModelAndView mav = new ModelAndView("/tourist/index.html");
-        mav.addObject ("username", (String) session.getAttribute("username"));
+        mav.addObject("username", (String) session.getAttribute("username"));
         return mav;
     }
 
@@ -146,7 +147,8 @@ public class userController {
         return new ModelAndView("redirect:/User/index");
 
     }
-   
+
+
 }
 
 // public class userController {

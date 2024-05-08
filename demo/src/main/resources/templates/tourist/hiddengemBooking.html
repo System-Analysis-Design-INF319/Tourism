@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hidden Gem Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/tourist/busBooking.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="" height=60 width=140 class="companylogo">
+    </div>
+    </div>
+    <div class="container">
+        <h3 class="getquotetext">Hidden Gem Booking</h3>
+
+        <div class="blocks">
+            <!-- partial:index.partial.html -->
+            <div class="left">
+
+                <p>Day</p>
+                <div class="select">
+                    <select >
+                        <option th:each="days: ${hiddenGem.startDay}" th:value="days" th:text="days"></option>
+                    </select>
+                </div>
+
+
+                <p>Time</p>
+                <div class="select">
+                    <div class="selectBtn" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>Longlac</div>
+                    <div class="selectDropdown">
+                        <div class="option" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>First option
+                        </div>
+                        <div class="option" data-type="secondOption"><i class="fas fa-map-marker-alt"></i>Second option
+                        </div>
+                        <div class="option" data-type="thirdOption"><i class="fas fa-map-marker-alt"></i>Third option
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>Number of people</p>
+                <div class="select">
+                    <div class="selectBtn" data-type="firstOption"><i class="fas fa-user"></i>1 Adult</div>
+                    <div class="selectDropdown">
+                        <div class="option" data-type="firstOption"><i class="fas fa-user"></i>First option</div>
+                        <div class="option" data-type="secondOption"><i class="fas fa-user"></i>Second option</div>
+                        <div class="option" data-type="thirdOption"><i class="fas fa-user"></i>Third option</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button">Book</button>
+        </div>
+    </div>
+</body>
+
+</html>

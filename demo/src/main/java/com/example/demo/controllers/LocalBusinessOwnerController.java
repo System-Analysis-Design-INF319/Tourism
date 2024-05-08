@@ -16,7 +16,7 @@ import com.example.demo.repositories.HiddenGemRepository;
 public class LocalBusinessOwnerController {
     @Autowired
     private HiddenGemRepository hiddenGemRepository;
-    
+
     @GetMapping("addHiddenGem")
     public ModelAndView addHiddenGems() {
         ModelAndView mav = new ModelAndView("/localBusinessOwner/addHiddenGem.html");
@@ -27,8 +27,8 @@ public class LocalBusinessOwnerController {
 
     @PostMapping("addHiddenGem")
     public ModelAndView saveHiddenGem(@ModelAttribute HiddenGem hiddenGem) {
-
         this.hiddenGemRepository.save(hiddenGem);
         return new ModelAndView("redirect:/LocalBusinessOwner/addHiddenGem");
     }
+
 }
