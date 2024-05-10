@@ -25,34 +25,29 @@
 
                 <p>Day</p>
                 <div class="select">
-                    <select >
-                        <option th:each="days: ${hiddenGem.startDay}" th:value="days" th:text="days"></option>
-                    </select>
+                    <th:block th:object="${days}">
+                        <select>
+                            <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
+                        </select>
+                    <th:block th:object="${days}">
                 </div>
 
 
                 <p>Time</p>
                 <div class="select">
-                    <div class="selectBtn" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>Longlac</div>
-                    <div class="selectDropdown">
-                        <div class="option" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>First option
-                        </div>
-                        <div class="option" data-type="secondOption"><i class="fas fa-map-marker-alt"></i>Second option
-                        </div>
-                        <div class="option" data-type="thirdOption"><i class="fas fa-map-marker-alt"></i>Third option
-                        </div>
-                    </div>
+                    <th:block th:object="${hours}">
+                        <select>
+                            <option th:each="hour : ${hours}" th:value="${hour}" th:text="${hour}"></option>
+                        </select>
+                    <th:block th:object="${hours}">
                 </div>
 
 
                 <p>Number of people</p>
                 <div class="select">
-                    <div class="selectBtn" data-type="firstOption"><i class="fas fa-user"></i>1 Adult</div>
-                    <div class="selectDropdown">
-                        <div class="option" data-type="firstOption"><i class="fas fa-user"></i>First option</div>
-                        <div class="option" data-type="secondOption"><i class="fas fa-user"></i>Second option</div>
-                        <div class="option" data-type="thirdOption"><i class="fas fa-user"></i>Third option</div>
-                    </div>
+                    <select>
+                        <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>
+                    </select>
                 </div>
             </div>
         </div>

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.models.HiddenGem;
 import com.example.demo.models.user;
 import com.example.demo.repositories.userRepository;
 import jakarta.servlet.http.HttpSession;

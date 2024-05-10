@@ -1,11 +1,16 @@
 package com.example.demo.models;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Entity
@@ -27,7 +32,7 @@ public class HiddenGem {
 
     public HiddenGem() {
     }
-
+ 
     public HiddenGem(int id, String name, String city, String description, String location, String image, String startDay, String endDay, LocalTime startWorkingTime, LocalTime endWorkingTime) {
         this.id = id;
         this.name = name;
@@ -203,5 +208,35 @@ public class HiddenGem {
             "}";
     }
 
+    
+    public ArrayList<String> getDays(String startDay, String endDay){
+        DayOfWeek start = DayOfWeek.valueOf(startDay.toUpperCase());
+        DayOfWeek end = DayOfWeek.valueOf(endDay.toUpperCase());	
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE");
+        ArrayList<String> days = new ArrayList<String>();
+
+        while (currentDate.getDayOfWeek() != start) {
+            currentDate = currentDate.plusDays(1);
+        }
+        while (currentDate.getDayOfWeek() != end) {
+            days.add(currentDate.format(formatter));
+            currentDate = currentDate.plusDays(1);
+        }
+        days.add(endDay);
+        return days;
+    }
+
+    public ArrayList<String> getTime(LocalTime startWorkingTime,LocalTime endWorkingTime){
+        ArrayList<String> hours = new ArrayList<String>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        while (startWorkingTime.isBefore(endWorkingTime) || startWorkingTime.equals(endWorkingTime)) {
+            String formattedHour = startWorkingTime.format(formatter);
+            hours.add(formattedHour);
+            startWorkingTime = startWorkingTime.plusHours(1); // Add an hour
+        }
+
+        return hours;
+    }
 
 }

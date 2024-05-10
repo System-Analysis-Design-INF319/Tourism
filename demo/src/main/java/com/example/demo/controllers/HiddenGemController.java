@@ -17,7 +17,7 @@ public class HiddenGemController {
     @Autowired
     private HiddenGemRepository hiddenGemRepository;
 
-    @GetMapping("/search")
+    @GetMapping("search")
     public List<HiddenGem> searchHiddenGem(@RequestParam String term) {
         return hiddenGemRepository.findByNameStartingWithIgnoreCase(term);
     }

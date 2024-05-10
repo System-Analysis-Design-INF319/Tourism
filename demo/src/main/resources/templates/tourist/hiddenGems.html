@@ -218,7 +218,7 @@
   
                     <p class="card-text" th:text="${hiddenGem.description}"></p>
                     
-                      <a href="" style="text-decoration: underline;">Book now</a>
+                      <a th:href="@{/booking/user/book-hiddengem(id=${hiddenGem.id})}" style="text-decoration: underline;">Book now</a>
   
                   </div>
   
