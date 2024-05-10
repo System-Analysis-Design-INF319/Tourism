@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.HiddenGem;
 
@@ -19,5 +20,13 @@ public class HiddenGemController {
     @GetMapping("/search")
     public List<HiddenGem> searchHiddenGem(@RequestParam String term) {
         return hiddenGemRepository.findByNameStartingWithIgnoreCase(term);
+    }
+
+    @GetMapping("hiddenGems")
+    public ModelAndView getAllhiddenGems() {
+        ModelAndView mav = new ModelAndView("/tourist/hiddenGems.html");
+        List<HiddenGem> hiddenGems = this.hiddenGemRepository.findAll();
+        mav.addObject("hiddenGems", hiddenGems);
+        return mav;
     }
 }
