@@ -1,11 +1,12 @@
 package com.example.demo.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-
+ 
 import java.util.Objects;
 
 @Entity
@@ -17,21 +18,24 @@ public class HiddenGemBooking {
     private String time;
     private int peopleNum;
 
+    @Column(name = "hidden_gem_id", updatable = false, insertable = false)
+    private int hiddenGemId;
+
     @ManyToOne
     private HiddenGem hiddenGem;
 
     @ManyToOne
     private user users;
 
-
     public HiddenGemBooking() {
     }
 
-    public HiddenGemBooking(int id, String day, String time, int peopleNum, HiddenGem hiddenGem, user users) {
+    public HiddenGemBooking(int id, String day, String time, int peopleNum, int hiddenGemId, HiddenGem hiddenGem, user users) {
         this.id = id;
         this.day = day;
         this.time = time;
         this.peopleNum = peopleNum;
+        this.hiddenGemId = hiddenGemId;
         this.hiddenGem = hiddenGem;
         this.users = users;
     }
@@ -66,6 +70,14 @@ public class HiddenGemBooking {
 
     public void setPeopleNum(int peopleNum) {
         this.peopleNum = peopleNum;
+    }
+
+    public int getHiddenGemId() {
+        return this.hiddenGemId;
+    }
+
+    public void setHiddenGemId(int hiddenGemId) {
+        this.hiddenGemId = hiddenGemId;
     }
 
     public HiddenGem getHiddenGem() {
@@ -104,6 +116,11 @@ public class HiddenGemBooking {
         return this;
     }
 
+    public HiddenGemBooking hiddenGemId(int hiddenGemId) {
+        setHiddenGemId(hiddenGemId);
+        return this;
+    }
+
     public HiddenGemBooking hiddenGem(HiddenGem hiddenGem) {
         setHiddenGem(hiddenGem);
         return this;
@@ -122,12 +139,12 @@ public class HiddenGemBooking {
             return false;
         }
         HiddenGemBooking hiddenGemBooking = (HiddenGemBooking) o;
-        return id == hiddenGemBooking.id && Objects.equals(day, hiddenGemBooking.day) && Objects.equals(time, hiddenGemBooking.time) && peopleNum == hiddenGemBooking.peopleNum && Objects.equals(hiddenGem, hiddenGemBooking.hiddenGem) && Objects.equals(users, hiddenGemBooking.users);
+        return id == hiddenGemBooking.id && Objects.equals(day, hiddenGemBooking.day) && Objects.equals(time, hiddenGemBooking.time) && peopleNum == hiddenGemBooking.peopleNum && hiddenGemId == hiddenGemBooking.hiddenGemId && Objects.equals(hiddenGem, hiddenGemBooking.hiddenGem) && Objects.equals(users, hiddenGemBooking.users);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, day, time, peopleNum, hiddenGem, users);
+        return Objects.hash(id, day, time, peopleNum, hiddenGemId, hiddenGem, users);
     }
 
     @Override
@@ -137,6 +154,7 @@ public class HiddenGemBooking {
             ", day='" + getDay() + "'" +
             ", time='" + getTime() + "'" +
             ", peopleNum='" + getPeopleNum() + "'" +
+            ", hiddenGemId='" + getHiddenGemId() + "'" +
             ", hiddenGem='" + getHiddenGem() + "'" +
             ", users='" + getUsers() + "'" +
             "}";

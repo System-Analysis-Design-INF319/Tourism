@@ -235,7 +235,6 @@ public class HiddenGem {
             hours.add(formattedHour);
             startWorkingTime = startWorkingTime.plusHours(1); // Add an hour
         }
-
         return hours;
     }
 

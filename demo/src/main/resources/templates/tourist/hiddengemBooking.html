@@ -20,40 +20,37 @@
         <h3 class="getquotetext">Hidden Gem Booking</h3>
 
         <div class="blocks">
-            <!-- partial:index.partial.html -->
             <div class="left">
-
-                <p>Day</p>
-                <div class="select">
-                    <th:block th:object="${days}">
-                        <select>
+                <form class="form" th:action="@{/booking/booked(id=${hiddenGemId})}"
+                    method="post">
+                    <p>Day</p>
+                    <div class="select">
+                        <select id="day" name="day">
                             <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
                         </select>
-                    <th:block th:object="${days}">
-                </div>
+                    </div>
 
-
-                <p>Time</p>
-                <div class="select">
-                    <th:block th:object="${hours}">
-                        <select>
+                    <p>Time</p>
+                    <div class="select">
+                        <select id="time" name="time">
                             <option th:each="hour : ${hours}" th:value="${hour}" th:text="${hour}"></option>
                         </select>
-                    <th:block th:object="${hours}">
-                </div>
+                    </div>
 
 
-                <p>Number of people</p>
-                <div class="select">
-                    <select>
-                        <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>
-                    </select>
-                </div>
+                    <p>Number of people</p>
+                    <div class="select">
+                        <select id="peopleNum" name="peopleNum">
+                            <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>
+                        </select>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit">Book</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="buttons">
-            <button type="button">Book</button>
-        </div>
+
     </div>
 </body>
 
