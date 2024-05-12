@@ -1,62 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta content="Free HTML Templates" name="keywords">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
-	<link rel="stylesheet" href="../../static/css/admin/adding.css">
-    <link rel="icon" href="../../images/logo.png" type="image/icon type" />
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/css/admin/adding.css">
+    <link rel="icon" href="/images/logo.png" type="image/icon type" />
 
 
-	<title>AdminHub</title>
+    <title>AdminHub</title>
 </head>
 
 <body>
 
 
-	<!-- SIDEBAR -->
-	<section th:replace="fragments/adminSidebar :: adminSidebar"></section>
+    <!-- SIDEBAR -->
+    <!-- <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section> -->
 
-	<!-- CONTENT -->
-	<section id="content">
-		<nav th:replace="fragments/adminNavbar :: adminNavbar"></nav>
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav> -->
 
-		<!-- MAIN -->
-		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Add A Transportation Details</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="dashboard.html">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right'></i></li>
-						<li>
-							<a class="active" href="#">Add Transportation Details</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Add Transportation Information</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="dashboard.html">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Add Transportation Information</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
 
-			<div class="table-data">
-				<div class="order">
-					<form class="form" action="#" th:action="" th:object="" method="post">
-						<div>
-							<button type="submit" name="submit" id="submit-button" value="submit">Add Transportation Details</button>
+            <div class="table-data">
+                <div class="order">
+                    <form class="form" th:action="@{/Transportation/addTransportation}" th:object="${transportation}" method="post">
+                        <div class="input-box" >
+							<label >From</label>
+							<input type="text" id="from" th:field="*{from}" placeholder="from">
 						</div>
-					</form>
-				</div>
-			</div>
+                        <div class="input-box" >
+							<label >To</label>
+							<input type="text" id="to" th:field="*{to}" placeholder="to">
+						</div>
+						<div class="input-box">
+							<label >Price</label>
+							<input type="textarea" id="price" th:field="*{price}" placeholder="price" >
+						</div>
+						<div class="input-box">
+							<label>Time</label>
+							<input type="text" id="time" th:field="*{time}" placeholder="time">
+						</div>						
+                        
+                            <button type="submit" name="submit" id="submit-button" value="submit">Add Transportation Information</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-		</main>
-		<!-- MAIN -->
-	</section>
+           
+        </main>
+       
+    </section>
 </body>
 
 </html>
