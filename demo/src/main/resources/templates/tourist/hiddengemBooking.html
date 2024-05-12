@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hidden Gem Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/tourist/index.css">
+    <link rel="stylesheet" href="/css/tourist/booking.css">
+</head>
+
+<body>
+    <header th:replace="fragments/userHeader :: userHeader"></header>
+
+    <div class="bodyContainer">
+        <div class="container">
+            <h3 class="getquotetext">Hidden Gem Booking</h3>
+
+            <div class="blocks">
+                <div class="left">
+                    <form class="form" th:action="@{/booking/booked(id=${hiddenGemId})}" method="post">
+                        <div th:field="${hiddenGemId}"></div>
+                        <p>Day</p>
+                        <div class="select">
+                            <select id="day" name="day">
+                                <option disabled selected>Please select...</option>
+                                <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
+                            </select>
+                        </div>
+
+                        <p>Time</p>
+                        <div class="select">
+                            <select id="time" name="time">
+                                <option disabled selected>Please select...</option>
+                                <option th:each="hour : ${hours}" th:value="${hour}" th:text="${hour}"></option>
+                            </select>
+                        </div>
+
+                        <p>Number of people</p>
+                        <div class="select">
+                            <select id="peopleNum" name="peopleNum">
+                                <option disabled selected>Please select...</option>
+                                <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="buttons">
+                            <button type="submit">Book</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="fragments/userFooter :: userFooter"></footer>
+
+</body>
+
+</html>

@@ -12,18 +12,18 @@
     <link rel="icon" href="/images/logo.png" type="image/icon type" />
 
 
-    <title>AdminHub</title>
+    <title>BusinessOwnerHub</title>
 </head>
 
 <body>
 
 
     <!-- SIDEBAR -->
-    <!-- <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section> -->
+    <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section>
 
     <!-- CONTENT -->
     <section id="content">
-        <!-- <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav> -->
+        <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav>
 
         <!-- MAIN -->
         <main>
@@ -45,46 +45,67 @@
 
             <div class="table-data">
                 <div class="order">
-                    <form class="form" th:action="@{/LocalBusinessOwner/addHiddenGem}" th:object="${hiddenGem}" method="post">
-                        <div class="input-box" >
-							<label >Place</label>
-							<input type="text" id="name" th:field="*{name}" placeholder="Place">
-						</div>
-                        <div class="input-box" >
-							<label >City</label>
-							<input type="text" id="city" th:field="*{city}" placeholder="City">
-						</div>
-						<div class="input-box">
-							<label >Description</label>
-							<input type="textarea" id="description" th:field="*{description}" placeholder="Description" >
-						</div>
-						<div class="input-box">
-							<label>Location</label>
-							<input type="text" id="location" th:field="*{location}" placeholder="Location">
-						</div>						
+                    <form class="form" th:action="@{/LocalBusinessOwner/addHiddenGem}" th:object="${hiddenGem}"
+                        method="post">
                         <div class="input-box">
-							<label >Image</label>
-							<input type="file" id="image" th:field="*{image}" placeholder="Image">
-						</div>
-                        <div class="input-box" id="dayfield">
-                            <label for="days">Available Days</label>
-                            <input type="text" name="days" class="days" id="days" th:field="*{days}" placeholder="Available Days">
-                            <input type="text" name="days" class="days" id="days" th:field="*{days}" placeholder="Available Days">
-                            <input type="text" name="days" class="days" id="days" th:field="*{days}" placeholder="Available Days">
-
-                            <!-- <a href="#" class="add">&plus;</a> -->
+                            <label>Place</label>
+                            <input type="text" id="name" th:field="*{name}" placeholder="Place">
                         </div>
-                        <div class="input-box" id="hourfield">
-                            <label for="hours">Available Hours</label>
-                            <input type="text" name="hours[]" id="hours" th:field="*{hours}" placeholder="Available Hours"> 
-                            <input type="text" name="hours[]" id="hours" th:field="*{hours}" placeholder="Available Hours"> 
-                            <input type="text" name="hours[]" id="hours" th:field="*{hours}" placeholder="Available Hours"> 
+                        <div class="input-box">
+                            <label>City</label>
+                            <input type="text" id="city" th:field="*{city}" placeholder="City">
+                        </div>
+                        <div class="input-box">
+                            <label>Description</label>
+                            <input type="text" id="description" th:field="*{description}" placeholder="Description">
+                        </div>
+                        <div class="input-box">
+                            <label>Location</label>
+                            <input type="text" id="location" th:field="*{location}" placeholder="Location">
+                        </div>
+                        <div class="input-box">
+                            <label>Image</label>
+                            <input type="file" id="image" th:field="*{image}" placeholder="Image">
+                        </div> 
+                        <div class="input-box">
+                            <label>Start Working Day</label>
+                            <select th:field="*{startDay}">
+                                <option th:value="saturday">Saturday</option>
+                                <option th:value="sunday">Sunday</option>
+                                <option th:value="monday">Monday</option>
+                                <option th:value="tuesday">Tuesday</option>
+                                <option th:value="wednesday">Wednesday</option>
+                                <option th:value="thursday">Thursday</option>
+                                <option th:value="Friday">Friday</option>
+                            </select>
+                        </div>
 
-                            <!-- <span><a href="#" id="addfields"><i class="fa fa-plus"></i></a></span>
-                            <span><a href="#" id="removefields"><i class="fa fa-minus"></i></a></span> -->
+                        <div class="input-box">
+                            <label>End Working Day</label>
+                            <select th:field="*{endDay}">
+                                <option th:value="saturday">Saturday</option>
+                                <option th:value="sunday">Sunday</option>
+                                <option th:value="monday">Monday</option>
+                                <option th:value="tuesday">Tuesday</option>
+                                <option th:value="wednesday">Wednesday</option>
+                                <option th:value="thursday">Thursday</option>
+                                <option th:value="Friday">Friday</option>
+                            </select>
+                        </div>
+
+                        <div class="input-box" id="startWorkingTime">
+                            <label for="hours">start Working Time</label>
+                            <input type="time" id="startWorkingTime" th:field="*{startWorkingTime}"
+                                placeholder="start Working Time">
+                        </div>
+                        <div class="input-box" id="endWorkingTime">
+                            <label for="hours">End Working Time</label>
+                            <input type="time" id="endWorkingTime" th:field="*{endWorkingTime}"
+                                placeholder="End Working Time">
                         </div>
                         <div>
-                            <button type="submit" name="submit" id="submit-button" value="submit">Add Hidden Gem Information</button>
+                            <button type="submit" name="submit" id="submit-button" value="submit">Add Hidden Gem
+                                Information</button>
                         </div>
                     </form>
                 </div>
@@ -106,7 +127,7 @@
                 <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Remove Field</a>
               </div> -->
 
-            
+
             <!-- <div class="controls">
                 <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Add More</a>
                 <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Remove Field</a>
@@ -114,7 +135,7 @@
             <!-- <div class="input-box" id="hourfield">
                 <label for="hours">Available Hours</label>
                 <input type="text" name="hours[]" id="hours"  placeholder="Available Hours"> -->
-                <!-- <span><a href="#" id="addfields"><i class="fa fa-plus"></i></a></span>
+            <!-- <span><a href="#" id="addfields"><i class="fa fa-plus"></i></a></span>
                 <span><a href="#" id="removefields"><i class="fa fa-minus"></i></a></span> -->
             <!-- </div> -->
 
