@@ -19,11 +19,11 @@
 
 
     <!-- SIDEBAR -->
-    <!-- <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section> -->
+    <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section>
 
     <!-- CONTENT -->
     <section id="content">
-        <!-- <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav> -->
+        <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav>
 
         <!-- MAIN -->
         <main>
@@ -45,23 +45,23 @@
 
             <div class="table-data">
                 <div class="order">
-                    <form class="form" th:action="@{/Transportation/addBusses}" th:object="${transportation}" method="post">
+                    <form class="form" th:action="@{/Transportation/addBus}" th:object="${transportation}" method="post">
                         <div class="input-box" >
-							<label >From</label>
-							<input type="text" id="from" th:field="*{from}" placeholder="from">
+							<label>Source</label>
+							<input type="text" id="source" placeholder="Source">
 						</div>
                         <div class="input-box" >
-							<label >To</label>
-							<input type="text" id="to" th:field="*{to}" placeholder="to">
+							<label >Destination</label>
+							<input type="text" id="destination" placeholder="Destination">
 						</div>
-						<div class="input-box">
+                        <div class="input-box">
 							<label >Price</label>
-							<input type="textarea" id="price" th:field="*{price}" placeholder="price" >
+							<input type="number" id="price" placeholder="price" >
 						</div>
 						<div class="input-box">
 							<label>Time</label>
-							<input type="text" id="time" th:field="*{time}" placeholder="time">
-						</div>						
+							<input type="time" id="time" placeholder="time">
+						</div>					
                         
                             <button type="submit" name="submit" id="submit-button" value="submit">Add Transportation Information</button>
                         </div>

@@ -29,7 +29,6 @@ public class HiddenGem {
     private LocalTime endWorkingTime;
 
 
-
     public HiddenGem() {
     }
  

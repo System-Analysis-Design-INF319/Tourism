@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +15,7 @@ public class HiddenGemBooking {
     private int id;
     private String day;
     private String time;
-    private int peopleNum;
+    private int peopleNum; 
 
     @ManyToOne
     private HiddenGem hiddenGem;

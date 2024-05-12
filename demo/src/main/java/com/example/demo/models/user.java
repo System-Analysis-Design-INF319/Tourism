@@ -4,16 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Pattern;
 
 import java.util.Objects;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Entity
 public class user {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
