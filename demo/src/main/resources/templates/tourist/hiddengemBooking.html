@@ -23,9 +23,11 @@
             <div class="left">
                 <form class="form" th:action="@{/booking/booked(id=${hiddenGemId})}"
                     method="post">
+                    <div th:field="${hiddenGemId}"></div>
                     <p>Day</p>
                     <div class="select">
                         <select id="day" name="day">
+                            <option disabled selected>Please select...</option>
                             <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
                         </select>
                     </div>
@@ -33,14 +35,15 @@
                     <p>Time</p>
                     <div class="select">
                         <select id="time" name="time">
+                            <option disabled selected>Please select...</option>
                             <option th:each="hour : ${hours}" th:value="${hour}" th:text="${hour}"></option>
                         </select>
                     </div>
 
-
                     <p>Number of people</p>
                     <div class="select">
                         <select id="peopleNum" name="peopleNum">
+                            <option disabled selected>Please select...</option>
                             <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>
                         </select>
                     </div>

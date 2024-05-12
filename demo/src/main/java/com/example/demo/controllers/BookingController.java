@@ -44,9 +44,13 @@ public class BookingController {
     @PostMapping("booked")
     public void book (@RequestParam int id, @ModelAttribute HiddenGemBooking booking, HttpServletResponse response, HttpSession session) throws IOException {
         HiddenGem hiddenGem = hiddenGemRepository.findById(id).get();
-        //booking.setHiddenGemId(id);
+        HiddenGemBooking hiddenGemBooking = new HiddenGemBooking();
+        hiddenGemBooking.setDay(booking.getDay());
+        hiddenGemBooking.setTime(booking.getTime());
+        hiddenGemBooking.setPeopleNum(booking.getPeopleNum());
+        hiddenGemBooking.setHiddenGem(hiddenGem);
+        //int userId = (int) session.getAttribute("user_id");
 
-        //Long userId = (Long) session.getAttribute("user_id");
         //Boolean exists = hiddenGemRepository.existsByUserId(userId);
 
         //if (exists) {
@@ -59,8 +63,7 @@ public class BookingController {
             //    User user = new User();
               //  user.setId(userId);
                 //booking.setUser(user);
-                
-                this.hiddenGemBookingRepository.save(booking);
+                this.hiddenGemBookingRepository.save(hiddenGemBooking);
                 //this.message = "Your booking has been successfully saved";
                 response.sendRedirect("/booking/user/book-hiddengem");
             //} else {
