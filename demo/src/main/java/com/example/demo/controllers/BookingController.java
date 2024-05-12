@@ -24,51 +24,61 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/booking")
 public class BookingController {
 
-    @Autowired
-    HiddenGemRepository hiddenGemRepository;
-    @Autowired
-    HiddenGemBookingRepository hiddenGemBookingRepository;
+  @Autowired
+  HiddenGemRepository hiddenGemRepository;
+  @Autowired
+  HiddenGemBookingRepository hiddenGemBookingRepository;
 
-    @GetMapping("user/book-hiddengem")
-    public ModelAndView BookHiddenGem(@RequestParam int id) {
-        HiddenGem hiddenGem = hiddenGemRepository.findById(id).get();
-        ModelAndView mav = new ModelAndView("/tourist/hiddengemBooking.html");
-        ArrayList<String> days = hiddenGem.getDays(hiddenGem.getStartDay(), hiddenGem.getEndDay());
-        ArrayList<String> hours = hiddenGem.getTime(hiddenGem.getStartWorkingTime(), hiddenGem.getEndWorkingTime());
-        mav.addObject("days", days);
-        mav.addObject("hours", hours);
-        mav.addObject("hiddenGemId", hiddenGem.getId());
-        return mav;
-    }
+  @GetMapping("user/book-hiddengem")
+  public ModelAndView BookHiddenGem(@RequestParam int id) {
+    HiddenGem hiddenGem = hiddenGemRepository.findById(id).get();
+    ModelAndView mav = new ModelAndView("/tourist/hiddengemBooking.html");
+    ArrayList<String> days = hiddenGem.getDays(hiddenGem.getStartDay(), hiddenGem.getEndDay());
+    ArrayList<String> hours = hiddenGem.getTime(hiddenGem.getStartWorkingTime(), hiddenGem.getEndWorkingTime());
+    mav.addObject("days", days);
+    mav.addObject("hours", hours);
+    mav.addObject("hiddenGemId", hiddenGem.getId());
+    return mav;
+  }
 
-    @PostMapping("booked")
-    public void book (@RequestParam int id, @ModelAttribute HiddenGemBooking booking, HttpServletResponse response, HttpSession session) throws IOException {
-        HiddenGem hiddenGem = hiddenGemRepository.findById(id).get();
-        HiddenGemBooking hiddenGemBooking = new HiddenGemBooking();
-        hiddenGemBooking.setDay(booking.getDay());
-        hiddenGemBooking.setTime(booking.getTime());
-        hiddenGemBooking.setPeopleNum(booking.getPeopleNum());
-        hiddenGemBooking.setHiddenGem(hiddenGem);
-        //int userId = (int) session.getAttribute("user_id");
+  @PostMapping("booked")
+  public void book(@RequestParam int id, @ModelAttribute HiddenGemBooking booking, HttpServletResponse response,
+      HttpSession session) throws IOException {
+    HiddenGem hiddenGem = hiddenGemRepository.findById(id).get();
+    HiddenGemBooking hiddenGemBooking = new HiddenGemBooking();
+    hiddenGemBooking.setDay(booking.getDay());
+    hiddenGemBooking.setTime(booking.getTime());
+    hiddenGemBooking.setPeopleNum(booking.getPeopleNum());
+    hiddenGemBooking.setHiddenGem(hiddenGem);
+    // int userId = (int) session.getAttribute("user_id");
 
-        //Boolean exists = hiddenGemRepository.existsByUserId(userId);
+    // Boolean exists = hiddenGemRepository.existsByUserId(userId);
 
-        //if (exists) {
-          //  this.message = "Can't Book Another Appointment!, You already have a booked appointment.";
-            //response.sendRedirect("/user/booking/my-bookings");
-        //}
+    // if (exists) {
+    // this.message = "Can't Book Another Appointment!, You already have a booked
+    // appointment.";
+    // response.sendRedirect("/user/booking/my-bookings");
+    // }
 
-        //else {
-          //  if (userId != null) {
-            //    User user = new User();
-              //  user.setId(userId);
-                //booking.setUser(user);
-                this.hiddenGemBookingRepository.save(hiddenGemBooking);
-                //this.message = "Your booking has been successfully saved";
-                response.sendRedirect("/booking/user/book-hiddengem");
-            //} else {
-            //    response.sendRedirect("/user/Login");
-            //}
-       // }
-    }
+    // else {
+    // if (userId != null) {
+    // User user = new User();
+    // user.setId(userId);
+    // booking.setUser(user);
+    this.hiddenGemBookingRepository.save(hiddenGemBooking);
+    // this.message = "Your booking has been successfully saved";
+    response.sendRedirect("/booking/user/book-hiddengem");
+    // } else {
+    // response.sendRedirect("/user/Login");
+    // }
+    // }
+  }
+
+  @GetMapping("bus")
+  public ModelAndView viewBusses() {
+    ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
+    return mav;
+
+  }
+
 }
