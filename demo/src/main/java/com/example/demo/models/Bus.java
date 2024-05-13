@@ -17,17 +17,18 @@ public class Bus {
      private String destination;
      private double price;
      private LocalTime time;
-
+     private int capacity;
 
      public Bus() {
      }
 
-     public Bus(int id, String source, String destination, double price, LocalTime time) {
+     public Bus(int id, String source, String destination, double price, LocalTime time, int capacity) {
           this.id = id;
           this.source = source;
           this.destination = destination;
           this.price = price;
           this.time = time;
+          this.capacity = capacity;
      }
 
      public int getId() {
@@ -70,6 +71,14 @@ public class Bus {
           this.time = time;
      }
 
+     public int getCapacity() {
+          return this.capacity;
+     }
+
+     public void setCapacity(int capacity) {
+          this.capacity = capacity;
+     }
+
      public Bus id(int id) {
           setId(id);
           return this;
@@ -95,6 +104,11 @@ public class Bus {
           return this;
      }
 
+     public Bus capacity(int capacity) {
+          setCapacity(capacity);
+          return this;
+     }
+
      @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -103,12 +117,12 @@ public class Bus {
             return false;
         }
         Bus bus = (Bus) o;
-        return id == bus.id && Objects.equals(source, bus.source) && Objects.equals(destination, bus.destination) && price == bus.price && Objects.equals(time, bus.time);
+        return id == bus.id && Objects.equals(source, bus.source) && Objects.equals(destination, bus.destination) && price == bus.price && Objects.equals(time, bus.time) && capacity == bus.capacity;
      }
 
      @Override
      public int hashCode() {
-          return Objects.hash(id, source, destination, price, time);
+          return Objects.hash(id, source, destination, price, time, capacity);
      }
 
      @Override
@@ -119,6 +133,7 @@ public class Bus {
                ", destination='" + getDestination() + "'" +
                ", price='" + getPrice() + "'" +
                ", time='" + getTime() + "'" +
+               ", capacity='" + getCapacity() + "'" +
                "}";
      }
 

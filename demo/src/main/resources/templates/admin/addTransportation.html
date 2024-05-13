@@ -19,14 +19,14 @@
 
 
     <!-- SIDEBAR -->
-    <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section>
+    <!-- <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section> -->
 
     <!-- CONTENT -->
-    <section id="content">
-        <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav>
+    <!-- <section id="content">
+        <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav> -->
 
         <!-- MAIN -->
-        <main>
+        <!-- <main>
             <div class="head-title">
                 <div class="left">
                     <h1>Add Transportation Information</h1>
@@ -40,28 +40,32 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="table-data">
                 <div class="order">
-                    <form class="form" th:action="@{/Transportation/addBus}" th:object="${transportation}" method="post">
+                    <form class="form" th:action="@{/Transportation/addBus}" th:object="${bus}" method="post">
                         <div class="input-box" >
 							<label>Source</label>
-							<input type="text" id="source" placeholder="Source">
+							<input type="text" id="source"th:field="*{source}" placeholder="Source">
 						</div>
                         <div class="input-box" >
 							<label >Destination</label>
-							<input type="text" id="destination" placeholder="Destination">
+							<input type="text" id="destination" th:field="*{destination}"placeholder="Destination">
 						</div>
                         <div class="input-box">
 							<label >Price</label>
-							<input type="number" id="price" placeholder="price" >
+							<input type="number" id="price" th:field="*{price}"placeholder="price" >
 						</div>
 						<div class="input-box">
 							<label>Time</label>
-							<input type="time" id="time" placeholder="time">
-						</div>					
+							<input type="time" id="time" th:field="*{time}" placeholder="time">
+						</div>			
+                        <div class="input-box">
+							<label>capacity</label>
+							<input type="number" id="capacity" th:field="*{capacity}"placeholder="capacity">
+						</div>		
                         
                             <button type="submit" name="submit" id="submit-button" value="submit">Add Transportation Information</button>
                         </div>
