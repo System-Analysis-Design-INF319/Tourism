@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,9 @@ public class HiddenGemBooking {
     private String day;
     private String time;
     private int peopleNum; 
+
+    @Column(name = "users_id", updatable = false, insertable = false)
+    private Long userId;
 
     @ManyToOne
     private HiddenGem hiddenGem;

@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +48,6 @@ public class BookingController {
       HttpSession session) throws IOException {
     HiddenGem hiddenGem = hiddenGemRepository.findById(id).get();
     Long userId = (Long) session.getAttribute("user_id");
-    System.out.println(userId);
 
     if (userId != null) {
       HiddenGemBooking hiddenGemBooking = new HiddenGemBooking();
@@ -63,14 +63,36 @@ public class BookingController {
     } else {
       response.sendRedirect("/User/login");
     }
+  }
 
+  @GetMapping("user/my-bookings")
+  public ModelAndView viewBookings(HttpSession session, HttpServletResponse response) throws IOException {
+    String message = null;
+    ModelAndView mav = new ModelAndView("/tourist/viewBookings.html");
+    Long userId = (Long) session.getAttribute("user_id");
+    System.out.println(userId);
+    if (userId != null) {
+      Boolean exists = hiddenGemBookingRepository.existsByUserId(userId);
+      if (exists) {
+        List<HiddenGemBooking> booking = this.hiddenGemBookingRepository.findByUserId(userId);
+        System.out.println(booking);
+        mav.addObject("bookings", booking);
+      } else {
+        mav.addObject("bookings", null);
+        message = "You don't have any bookings";
+      }
+    } else {
+      response.sendRedirect("/User/login");
+    }
+
+    mav.addObject("message", message);
+    return mav;
   }
 
   @GetMapping("bus")
   public ModelAndView viewBusses() {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
     return mav;
-
   }
 
 }
