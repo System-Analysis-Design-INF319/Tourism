@@ -59,7 +59,7 @@ public class BookingController {
       hiddenGemBooking.setHiddenGem(hiddenGem);
       hiddenGemBooking.setUsers(user);
       this.hiddenGemBookingRepository.save(hiddenGemBooking);
-      response.sendRedirect("user/my-bookings"); //change it to pay deposit
+      response.sendRedirect("user/my-bookings"); // change it to pay deposit
     } else {
       response.sendRedirect("/User/login");
     }
@@ -69,12 +69,10 @@ public class BookingController {
   public ModelAndView viewBookings(HttpSession session, HttpServletResponse response) throws IOException {
     ModelAndView mav = new ModelAndView("/tourist/viewBookings.html");
     Long userId = (Long) session.getAttribute("user_id");
-    System.out.println(userId);
     if (userId != null) {
       Boolean exists = hiddenGemBookingRepository.existsByUserId(userId);
       if (exists) {
         List<HiddenGemBooking> booking = this.hiddenGemBookingRepository.findByUserId(userId);
-        System.out.println(booking);
         mav.addObject("bookings", booking);
       } else {
         mav.addObject("bookings", null);
@@ -92,6 +90,23 @@ public class BookingController {
     System.out.println(hiddenGemBooking);
     this.hiddenGemBookingRepository.delete(hiddenGemBooking);
     response.sendRedirect("user/my-bookings");
+  }
+
+  @GetMapping("LocalBusinessOwner/bookings")
+  public ModelAndView viewLocalBusinessOwnerBookings(HttpSession session, HttpServletResponse response)
+      throws IOException {
+    ModelAndView mav = new ModelAndView("/localBusinessOwner/bookings.html");
+
+    return mav;
+  }
+
+  @GetMapping("admin/HiddenGemBookings")
+  public ModelAndView viewAdminBookings(HttpServletResponse response) throws IOException {
+    ModelAndView mav = new ModelAndView("/admin/bookings.html");
+    List<HiddenGemBooking> booking = this.hiddenGemBookingRepository.findAll();
+    System.out.println(booking);
+    mav.addObject("bookings", booking);
+    return mav;
   }
 
   @GetMapping("bus")
