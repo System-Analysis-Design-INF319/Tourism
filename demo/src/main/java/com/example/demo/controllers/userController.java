@@ -142,6 +142,7 @@ public class userController {
         }
 
         // Redirect to the index page after successful login
+        session.setAttribute("user_id", dbUser.getId());
         session.setAttribute("username", dbUser.getUsername());
         return new ModelAndView("redirect:/User/index");
 

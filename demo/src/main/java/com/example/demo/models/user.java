@@ -19,16 +19,27 @@ public class user {
     private String phonenumber;
     private String password;
     private String confirmpassword;
+
+
     public user() {
     }
 
-    public user(String fullname, String username, String email, String phonenumber, String password, String confirmpassword) {
+    public user(Long id, String fullname, String username, String email, String phonenumber, String password, String confirmpassword) {
+        this.id = id;
         this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.phonenumber = phonenumber;
         this.password = password;
         this.confirmpassword = confirmpassword;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullname() {
@@ -79,6 +90,11 @@ public class user {
         this.confirmpassword = confirmpassword;
     }
 
+    public user id(Long id) {
+        setId(id);
+        return this;
+    }
+
     public user fullname(String fullname) {
         setFullname(fullname);
         return this;
@@ -109,19 +125,6 @@ public class user {
         return this;
     }
 
-    public boolean isEmpty(String value) {
-        return value == null || value.trim().isEmpty();
-    }
-
-    public boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email != null && email.matches(emailRegex);
-    }
-
-    public boolean isPasswordValid(String password, String confirmPassword) {
-        return password != null && password.length() >= 8 && password.equals(confirmPassword);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -130,18 +133,19 @@ public class user {
             return false;
         }
         user user = (user) o;
-        return Objects.equals(fullname, user.fullname) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && phonenumber == user.phonenumber && Objects.equals(password, user.password) && Objects.equals(confirmpassword, user.confirmpassword);
+        return Objects.equals(id, user.id) && Objects.equals(fullname, user.fullname) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(phonenumber, user.phonenumber) && Objects.equals(password, user.password) && Objects.equals(confirmpassword, user.confirmpassword);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fullname, username, email, phonenumber, password, confirmpassword);
+        return Objects.hash(id, fullname, username, email, phonenumber, password, confirmpassword);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " fullname='" + getFullname() + "'" +
+            " id='" + getId() + "'" +
+            ", fullname='" + getFullname() + "'" +
             ", username='" + getUsername() + "'" +
             ", email='" + getEmail() + "'" +
             ", phonenumber='" + getPhonenumber() + "'" +
@@ -149,8 +153,5 @@ public class user {
             ", confirmpassword='" + getConfirmpassword() + "'" +
             "}";
     }
-    
+
 }
-
-
-

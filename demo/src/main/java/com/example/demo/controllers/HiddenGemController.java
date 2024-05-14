@@ -9,6 +9,8 @@ import com.example.demo.models.HiddenGem;
 
 import com.example.demo.repositories.HiddenGemRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
 
 @RestController
@@ -23,7 +25,7 @@ public class HiddenGemController {
     }
 
     @GetMapping("hiddenGems")
-    public ModelAndView getAllhiddenGems() {
+    public ModelAndView getAllhiddenGems(HttpSession session) {
         ModelAndView mav = new ModelAndView("/tourist/hiddenGems.html");
         List<HiddenGem> hiddenGems = this.hiddenGemRepository.findAll();
         mav.addObject("hiddenGems", hiddenGems);
