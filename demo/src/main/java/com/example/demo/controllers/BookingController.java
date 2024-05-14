@@ -89,6 +89,15 @@ public class BookingController {
     return mav;
   }
 
+  @GetMapping("cancelled")
+  public void cancelBooking(@RequestParam int id, HttpServletResponse response) throws IOException {
+    HiddenGemBooking hiddenGemBooking = hiddenGemBookingRepository.findById(id).get();
+    System.out.println(hiddenGemBooking);
+    this.hiddenGemBookingRepository.delete(hiddenGemBooking);
+    response.sendRedirect("user/my-bookings");
+
+  }
+
   @GetMapping("bus")
   public ModelAndView viewBusses() {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");

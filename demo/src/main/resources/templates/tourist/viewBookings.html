@@ -41,7 +41,7 @@
                             <td  th:text="${booking.time}"></td>
                             <td  th:text="${booking.peopleNum}"></td>
                             <td>
-                                <a class="buttons" id="delete" type="submit">Cancel</button>
+                                <a class="buttons" id="delete" th:href="@{/booking/cancelled(id=${booking.id})}">Cancel</a>
                             </td>
 
                         </tbody>
