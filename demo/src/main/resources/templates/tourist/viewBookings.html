@@ -21,31 +21,39 @@
     <!--- #HEADER  -->
     <header th:replace="fragments/userHeader :: userHeader"></header>
     <main>
-            <div class="table-data">
-                <div class="order">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Place</th>
-                                <th>Location</th>
-                                <th>Day</th>
-                                <th>Time</th>
-                                <th>Number of people</th>
-                                <th>Cancel Booking</th>
-                            </tr>
-                        </thead>
-                        <tbody th:each = "booking: ${bookings}">
-                            <td th:text="${booking.hiddenGem.name}"></td>
-                            <td  th:text="${booking.hiddenGem.location}"></td>
-                            <td  th:text="${booking.day}"></td>
-                            <td  th:text="${booking.time}"></td>
-                            <td  th:text="${booking.peopleNum}"></td>
-                            <td>
-                                <a class="buttons" id="delete" th:href="@{/booking/cancelled(id=${booking.id})}">Cancel</a>
-                            </td>
+        <div class="table-data">
+            <div class="order">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Place</th>
+                            <th>Location</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Number of people</th>
+                            <th>Cancel Booking</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="booking: ${bookings}">
+                        <td th:text="${booking.hiddenGem.name}"></td>
+                        <td th:text="${booking.hiddenGem.location}"></td>
+                        <td th:text="${booking.day}"></td>
+                        <td th:text="${booking.time}"></td>
+                        <td th:text="${booking.peopleNum}"></td>
+                        <td>
+                            <a class="buttons" id="delete" th:href="@{/booking/cancelled(id=${booking.id})}">Cancel</a>
+                        </td>
 
-                        </tbody>
-                    </table>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${message != null}" class="alert">
+                <span th:if="${message != null}" class="closebtn"
+                    onclick="this.parentElement.style.display='none';">&times;</span>
+                <span th:text="${message}"></span>
+                <span>
+                    <a th:if="${booking == null}" id="messageLink" th:href="@{/hiddenGems}">View Hidden Gems</a>
+                </span>
             </div>
         </div>
     </main>

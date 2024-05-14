@@ -59,7 +59,7 @@ public class BookingController {
       hiddenGemBooking.setHiddenGem(hiddenGem);
       hiddenGemBooking.setUsers(user);
       this.hiddenGemBookingRepository.save(hiddenGemBooking);
-      response.sendRedirect("/booking/user/book-hiddengem");
+      response.sendRedirect("user/my-bookings"); //change it to pay deposit
     } else {
       response.sendRedirect("/User/login");
     }
@@ -67,7 +67,6 @@ public class BookingController {
 
   @GetMapping("user/my-bookings")
   public ModelAndView viewBookings(HttpSession session, HttpServletResponse response) throws IOException {
-    String message = null;
     ModelAndView mav = new ModelAndView("/tourist/viewBookings.html");
     Long userId = (Long) session.getAttribute("user_id");
     System.out.println(userId);
@@ -79,13 +78,11 @@ public class BookingController {
         mav.addObject("bookings", booking);
       } else {
         mav.addObject("bookings", null);
-        message = "You don't have any bookings";
+        mav.addObject("message", "You don't have any bookings");
       }
     } else {
       response.sendRedirect("/User/login");
     }
-
-    mav.addObject("message", message);
     return mav;
   }
 
@@ -95,7 +92,6 @@ public class BookingController {
     System.out.println(hiddenGemBooking);
     this.hiddenGemBookingRepository.delete(hiddenGemBooking);
     response.sendRedirect("user/my-bookings");
-
   }
 
   @GetMapping("bus")

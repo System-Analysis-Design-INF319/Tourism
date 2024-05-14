@@ -1,8 +1,8 @@
-
 /* MAIN */
-main{
-	margin: 100px;
+main {
+    margin: 100px;
 }
+
 .table-data {
     max-width: 800px;
     margin: 0 auto;
@@ -53,8 +53,8 @@ tbody td {
 }
 
 .buttons:hover {
-	cursor: pointer;
-	background-color: rgb(195, 6, 6);
+    cursor: pointer;
+    background-color: rgb(195, 6, 6);
 }
 
 .buttons {
@@ -63,11 +63,54 @@ tbody td {
 
 
 #content main .table-data>div {
-	border-radius: 20px;
-	background: var(--light);
-	padding: 24px;
-	overflow-x: auto;
+    border-radius: 20px;
+    background: var(--light);
+    padding: 24px;
+    overflow-x: auto;
 }
+
+
+
+.alert {
+    padding: 20px;
+    background-color: #FF9800;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Close button style */
+.closebtn {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+#messageLink {
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 600px) {
     thead {

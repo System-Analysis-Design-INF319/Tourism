@@ -125,6 +125,20 @@ public class user {
         return this;
     }
 
+
+    public boolean isEmpty(String value) {
+        return value == null || value.trim().isEmpty();
+    }
+
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email != null && email.matches(emailRegex);
+    }
+
+    public boolean isPasswordValid(String password, String confirmPassword) {
+        return password != null && password.length() >= 8 && password.equals(confirmPassword);
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (o == this)
