@@ -10,8 +10,8 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../static/css/admin/tables.css">
-    <link rel="icon" href="../../images/logo.png" type="image/icon type" />
+    <link rel="stylesheet" href="/css/admin/tables.css">
+    <link rel="icon" href="/images/logo.png" type="image/icon type" />
 </head>
 
 <body>
@@ -50,15 +50,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td >1</td>
-                                <td>sara</td>
-                                <td>srara</td>
-                                <td>0258520</td>
+                            <tr th:each="owner : ${businessOwners}">
+                                <td th:text="${owner.id}"></td>
+                                <td th:text="${owner.name}"></td>
+                                <td th:text="${owner.email}"></td>
+                                <td th:text="${owner.phoneNumber}"></td>
                                 <td>
-                                    <a class="buttons" id="edit">Edit</a>
-                                    <a class="buttons" id="delete" type="submit">Delete</button>
+                                    <a href="#" th:href="@{/admin/businessOwners/edit(ownerId=${owner.id})}">Edit</a>
+                                    <a href="#" th:href="@{/admin/businessOwners/delete(ownerId=${owner.id})}">Delete</a>
                                 </td>
-
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -66,6 +67,8 @@
 
         </main>
     </section>
+
+    <script src="/JS/script.js"></script>
 </body>
 
 </html>
