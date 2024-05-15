@@ -21,52 +21,35 @@
 
             <div class="blocks">
                 <div class="left">
-                    <p>From</p>
-                    <div class="select">
-                        <div class="selectBtn" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>Thunder Bay
+                    <form class="form" th:action="@{/booking/booked(id=${hiddenGemId})}" method="post">
+                        <!-- <div th:field="${hiddenGemId}"></div> -->
+                        <p>Day</p>
+                        <div class="select">
+                            <select id="day" name="day">
+                                <option disabled selected>Please select...</option>
+                                <!-- <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option> -->
+                            </select>
                         </div>
-                        <div class="selectDropdown">
-                            <div class="option" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>Longlac
-                            </div>
-                            <div class="option" data-type="secondOption"><i class="fas fa-map-marker-alt"></i>Second
-                                option
-                            </div>
-                            <div class="option" data-type="thirdOption"><i class="fas fa-map-marker-alt"></i>Third
-                                option
-                            </div>
+
+                        <p>Time</p>
+                        <div class="select">
+                            <select id="time" name="time">
+                                <option disabled selected>Please select...</option>
+                                <!-- <option th:each="hour : ${hours}" th:value="${hour}" th:text="${hour}"></option> -->
+                            </select>
                         </div>
-                    </div>
-                    <p>To</p>
-                    <div class="select">
-                        <div class="selectBtn" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>Longlac
+
+                        <p>Number of people</p>
+                        <div class="select">
+                            <select id="peopleNum" name="peopleNum">
+                                <option disabled selected>Please select...</option>
+                                <!-- <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"> -->
+                                </option>
+                            </select>
                         </div>
-                        <div class="selectDropdown">
-                            <div class="option" data-type="firstOption"><i class="fas fa-map-marker-alt"></i>First
-                                option
-                            </div>
-                            <div class="option" data-type="secondOption"><i class="fas fa-map-marker-alt"></i>Second
-                                option
-                            </div>
-                            <div class="option" data-type="thirdOption"><i class="fas fa-map-marker-alt"></i>Third
-                                option
-                            </div>
-                        </div>
-                    </div>
-                    <p>Departure Date</p>
-                    <div class="date-input-container">
-                        <i class="fas fa-calendar-alt date-icon"></i>
-                        <input class="date-input-field " type="text" id="sourcedatepicker" placeholder="mm/dd/yyyy">
-                    </div>
-                    <p>Passengers</p>
-                    <div class="select">
-                        <div class="selectBtn" data-type="firstOption"><i class="fas fa-user"></i>1 Adult</div>
-                        <div class="selectDropdown">
-                            <div class="option" data-type="firstOption"><i class="fas fa-user"></i>First option</div>
-                            <div class="option" data-type="secondOption"><i class="fas fa-user"></i>Second option</div>
-                            <div class="option" data-type="thirdOption"><i class="fas fa-user"></i>Third option</div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
+                
                 <div class="right">
                     <div class="trip-detail-container">
                         <div class="one-way-container">

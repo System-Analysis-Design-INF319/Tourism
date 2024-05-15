@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.models.Bus;
 import com.example.demo.models.HiddenGem;
 import com.example.demo.models.HiddenGemBooking;
 import com.example.demo.models.user;
 import com.example.demo.repositories.HiddenGemRepository;
+import com.example.demo.repositories.BusRepository;
 import com.example.demo.repositories.HiddenGemBookingRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -110,7 +112,7 @@ public class BookingController {
   }
 
   @GetMapping("bus")
-  public ModelAndView viewBusses() {
+  public ModelAndView bookBus(@RequestParam int id, HttpSession session) {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
     return mav;
   }

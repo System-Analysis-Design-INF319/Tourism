@@ -43,6 +43,7 @@
                         <thead>
                             <tr>
                                 <th>Place</th>
+                                <th>Local Business Owner</th>
                                 <th>Booked By</th>
                                 <th>Day</th>
                                 <th>Time</th>
@@ -51,6 +52,8 @@
                         </thead>
                         <tbody th:each="booking: ${bookings}">
                             <td th:text="${booking.hiddenGem.name}"></td>
+                            <td th:text="${booking.hiddenGem.name}"></td><!--remove it later-->
+                            <!-- <td th:text="${booking.localBusinessOwner.name}"></td> -->
                             <td th:text="${booking.users.fullname}"></td>
                             <td th:text="${booking.day}"></td>
                             <td th:text="${booking.time}"></td>
