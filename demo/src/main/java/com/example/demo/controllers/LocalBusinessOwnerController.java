@@ -13,6 +13,7 @@ import com.example.demo.repositories.HiddenGemRepository;
 @RestController
 @RequestMapping("/LocalBusinessOwner")
 public class LocalBusinessOwnerController {
+    
     @Autowired
     private HiddenGemRepository hiddenGemRepository;
 
