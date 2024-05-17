@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class HistoricalPlaces {
+public class HistoricalPlace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,10 +24,11 @@ public class HistoricalPlaces {
     private LocalTime endWorkingTime;
 
 
-    public HistoricalPlaces() {
+
+    public HistoricalPlace() {
     }
 
-    public HistoricalPlaces(int id, String name, String city, String description, String location, String image, String startDay, String endDay, LocalTime startWorkingTime, LocalTime endWorkingTime) {
+    public HistoricalPlace(int id, String name, String city, String description, String location, String image, String startDay, String endDay, LocalTime startWorkingTime, LocalTime endWorkingTime) {
         this.id = id;
         this.name = name;
         this.city = city;
@@ -120,52 +121,52 @@ public class HistoricalPlaces {
         this.endWorkingTime = endWorkingTime;
     }
 
-    public HistoricalPlaces id(int id) {
+    public HistoricalPlace id(int id) {
         setId(id);
         return this;
     }
 
-    public HistoricalPlaces name(String name) {
+    public HistoricalPlace name(String name) {
         setName(name);
         return this;
     }
 
-    public HistoricalPlaces city(String city) {
+    public HistoricalPlace city(String city) {
         setCity(city);
         return this;
     }
 
-    public HistoricalPlaces description(String description) {
+    public HistoricalPlace description(String description) {
         setDescription(description);
         return this;
     }
 
-    public HistoricalPlaces location(String location) {
+    public HistoricalPlace location(String location) {
         setLocation(location);
         return this;
     }
 
-    public HistoricalPlaces image(String image) {
+    public HistoricalPlace image(String image) {
         setImage(image);
         return this;
     }
 
-    public HistoricalPlaces startDay(String startDay) {
+    public HistoricalPlace startDay(String startDay) {
         setStartDay(startDay);
         return this;
     }
 
-    public HistoricalPlaces endDay(String endDay) {
+    public HistoricalPlace endDay(String endDay) {
         setEndDay(endDay);
         return this;
     }
 
-    public HistoricalPlaces startWorkingTime(LocalTime startWorkingTime) {
+    public HistoricalPlace startWorkingTime(LocalTime startWorkingTime) {
         setStartWorkingTime(startWorkingTime);
         return this;
     }
 
-    public HistoricalPlaces endWorkingTime(LocalTime endWorkingTime) {
+    public HistoricalPlace endWorkingTime(LocalTime endWorkingTime) {
         setEndWorkingTime(endWorkingTime);
         return this;
     }
@@ -174,11 +175,11 @@ public class HistoricalPlaces {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof HistoricalPlaces)) {
+        if (!(o instanceof HistoricalPlace)) {
             return false;
         }
-        HistoricalPlaces historicalPlaces = (HistoricalPlaces) o;
-        return id == historicalPlaces.id && Objects.equals(name, historicalPlaces.name) && Objects.equals(city, historicalPlaces.city) && Objects.equals(description, historicalPlaces.description) && Objects.equals(location, historicalPlaces.location) && Objects.equals(image, historicalPlaces.image) && Objects.equals(startDay, historicalPlaces.startDay) && Objects.equals(endDay, historicalPlaces.endDay) && Objects.equals(startWorkingTime, historicalPlaces.startWorkingTime) && Objects.equals(endWorkingTime, historicalPlaces.endWorkingTime);
+        HistoricalPlace historicalPlace = (HistoricalPlace) o;
+        return id == historicalPlace.id && Objects.equals(name, historicalPlace.name) && Objects.equals(city, historicalPlace.city) && Objects.equals(description, historicalPlace.description) && Objects.equals(location, historicalPlace.location) && Objects.equals(image, historicalPlace.image) && Objects.equals(startDay, historicalPlace.startDay) && Objects.equals(endDay, historicalPlace.endDay) && Objects.equals(startWorkingTime, historicalPlace.startWorkingTime) && Objects.equals(endWorkingTime, historicalPlace.endWorkingTime);
     }
 
     @Override
@@ -200,6 +201,6 @@ public class HistoricalPlaces {
             ", startWorkingTime='" + getStartWorkingTime() + "'" +
             ", endWorkingTime='" + getEndWorkingTime() + "'" +
             "}";
-    }
+    }    
     
 }

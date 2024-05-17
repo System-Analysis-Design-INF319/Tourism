@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.models.HistoricalPlaces;
+import com.example.demo.models.HistoricalPlace;
 import com.example.demo.models.LocalBusinessOwner;
-import com.example.demo.repositories.HistoricalPlacesRepository;
+import com.example.demo.repositories.HistoricalPlaceRepository;
 import com.example.demo.repositories.LocalBusinessOwnerRepository;
 
 @Controller
@@ -21,7 +21,7 @@ public class AdminController {
     private LocalBusinessOwnerRepository localBusinessOwnerRepository;
 
     @Autowired
-    private HistoricalPlacesRepository historicalPlacesRepository;
+    private HistoricalPlaceRepository historicalPlaceRepository;
 
 
     @GetMapping("businessOwners")
@@ -62,18 +62,18 @@ public class AdminController {
 
 
 
-    @GetMapping("addHistoricalPlaces")
+    @GetMapping("addHistoricalPlace")
     public ModelAndView addHistoricalPlaces() {
         ModelAndView mav = new ModelAndView("/admin/addHistoricalPlaces.html");
-        HistoricalPlaces newHistoricalPlace = new HistoricalPlaces();
+        HistoricalPlace newHistoricalPlace = new HistoricalPlace();
         mav.addObject("historicalPlace", newHistoricalPlace);
         return mav;
     }
 
-    @PostMapping("addHistoricalPlaces")
-    public ModelAndView saveHiddenGem(@ModelAttribute HistoricalPlaces historicalPlaces) {
-        this.historicalPlacesRepository.save(historicalPlaces);
-        return new ModelAndView("redirect:/admin/addHistoricalPlaces");
+    @PostMapping("addHistoricalPlace")
+    public ModelAndView saveHiddenGem(@ModelAttribute HistoricalPlace historicalPlace) {
+        this.historicalPlaceRepository.save(historicalPlace);
+        return new ModelAndView("redirect:/admin/addHistoricalPlace");
     }
 
 }
