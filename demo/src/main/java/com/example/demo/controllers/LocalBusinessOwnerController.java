@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +41,30 @@ public class LocalBusinessOwnerController {
         List<HiddenGem> hiddenGems = this.hiddenGemRepository.findAll();
         mav.addObject("hiddenGems", hiddenGems);
         return mav;
+    }
+
+    @GetMapping("editHiddenGemInfo/{id}")
+    public ModelAndView editHiddenGem(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView("/localBusinessOwner/editHiddenGemInfo.html");
+        HiddenGem hiddenGem = this.hiddenGemRepository.findById(id); 
+        mav.addObject("hiddenGem", hiddenGem);
+        return mav;
+    }
+    @PostMapping("editHiddenGemInfo/{id}")
+    public ModelAndView editHiddenGemInfo(@PathVariable("id") int id, @ModelAttribute HiddenGem updatedHiddenGem) {
+        HiddenGem existingHiddenGem = this.hiddenGemRepository.findById(id);
+        existingHiddenGem.setName(updatedHiddenGem.getName());
+        existingHiddenGem.setCity(updatedHiddenGem.getCity());
+        existingHiddenGem.setDescription(updatedHiddenGem.getDescription());
+        existingHiddenGem.setLocation(updatedHiddenGem.getLocation());
+        existingHiddenGem.setImage(updatedHiddenGem.getImage());
+        existingHiddenGem.setStartDay(updatedHiddenGem.getStartDay());
+        existingHiddenGem.setEndDay(updatedHiddenGem.getEndDay());
+        existingHiddenGem.setStartWorkingTime(updatedHiddenGem.getStartWorkingTime());
+        existingHiddenGem.setEndWorkingTime(updatedHiddenGem.getEndWorkingTime());
+
+        hiddenGemRepository.save(existingHiddenGem); 
+        return new ModelAndView("redirect:/LocalBusinessOwner/hiddenGemInfo"); 
     }
 
 }
