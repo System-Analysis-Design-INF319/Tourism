@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -7,15 +6,15 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../static/css/admin/profile.css">
+    <link rel="stylesheet" href="/css/admin/profile.css">
     <link rel="icon" href="/images/logo.png" type="image/icon type" />
 </head>
 
 <body>
-    <section th:replace="fragments/userSidebar :: userSidebar"></section>
+    <!-- <section th:replace="fragments/userSidebar :: userSidebar"></section> -->
     <!-- CONTENT -->
     <section id="content">
-        <nav th:replace="fragments/userHeader::userHeader"></nav>
+        <!-- <nav th:replace="fragments/userHeader::userHeader"></nav> -->
 
         <!-- MAIN -->
         <main>
@@ -34,10 +33,10 @@
                 </div>
             </div>
             <div class="container rounded bg-white mt-5 mb-5">
-                <div class="row">
+                <div class="row" th:each="hiddenGem: ${hiddenGems}">
                     <div class="col-md-3 border-right">
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                            <img class="rounded-circle mt-5" width="150px" src="../../static/images/1.jpg" title="img">
+                            <img class="rounded-circle mt-5" width="150px" th:src="@{${'/images/'+hiddenGem.image}}" title="img">
                         </div>
                     </div>
                     <div class="col-md-5 border-right">
@@ -47,18 +46,46 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-6">
-                                    <label class="labels">Place: </span></label>
+                                    <label class="labels">Place: </label>
+                                    <span th:text="${hiddenGem.name}"></span>
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="labels">Description: </span></label>
+                                    <label class="labels">City: </label>
+                                    <span th:text="${hiddenGem.city}"></span>
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="labels">Location: </span></label>
+                                    <label class="labels">Description: </label>
+                                    <span th:text="${hiddenGem.description}"></span>
                                 </div>
+                                <div class="col-md-12">
+                                    <label class="labels">Location: </label>
+                                    <span th:text="${hiddenGem.location}"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="labels">Start Working Day: </label>
+                                    <span th:text="${hiddenGem.startDay}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">End Working Day: </label>
+                                    <span th:text="${hiddenGem.endDay}"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="labels">start Working Time: </label>
+                                    <span th:text="${hiddenGem.startWorkingTime}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">End Working Time: </label>
+                                    <span th:text="${hiddenGem.endWorkingTime}"></span>
+                                </div>
+                                <!-- <br> -->
+                                <a th:href="@{'/LocalBusinessOwner/editHiddenGemInfo/' + ${hiddenGem.id}}" class="profile-form">Edit Information</a>
+                                <br>
+                                <a th:href="@{'/LocalBusinessOwner/deleteHiddenGemInfo/' + ${hiddenGem.id}}" class="profile-form">Delete Information</a>
 
                                 <br>
-                                <a href="/doctor/editProfile" class="profile-form">Edit Information</a>
-
+                                <br>
                             </div>
                         </div>
                     </div>
