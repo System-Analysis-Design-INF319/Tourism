@@ -1,0 +1,122 @@
+<html xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/css/admin/adding.css">
+    <link rel="icon" href="/images/logo.png" type="image/icon type" />
+
+
+    <title>BusinessOwnerHub</title>
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <!-- <section th:replace="fragments/businessOwnerSidebar :: businessOwnerSidebar"></section> -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- <nav th:replace="fragments/businessOwnerNavbar :: businessOwnerNavbar"></nav> -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Edit Hidden Gem Information</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="dashboard.html">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Edit Hidden Gem Information</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="table-data">
+                <div class="order">
+                    <form class="form" th:action="@{/LocalBusinessOwner/editHiddenGemInfo/{id}(id=${hiddenGem.id})}" th:object="${hiddenGem}" method="post">
+                        <div class="input-box">
+                            <label>Place</label>
+                            <input type="text" id="name" th:field="*{name}" placeholder="Place">
+                        </div>
+                        <div class="input-box">
+                            <label>City</label>
+                            <input type="text" id="city" th:field="*{city}" placeholder="City">
+                        </div>
+                        <div class="input-box">
+                            <label>Description</label>
+                            <input type="text" id="description" th:field="*{description}" placeholder="Description">
+                        </div>
+                        <div class="input-box">
+                            <label>Location</label>
+                            <input type="text" id="location" th:field="*{location}" placeholder="Location">
+                        </div>
+                        <div class="input-box">
+                            <label>Image</label>
+                            <input type="file" id="image" th:field="*{image}" placeholder="Image">
+                        </div> 
+                        <div class="input-box">
+                            <label>Start Working Day</label>
+                            <select th:field="*{startDay}">
+                                <!-- <option th:text="${hiddenGem.startDay}"></option> -->
+
+                                <option th:value="saturday">Saturday</option>
+                                <option th:value="sunday">Sunday</option>
+                                <option th:value="monday">Monday</option>
+                                <option th:value="tuesday">Tuesday</option>
+                                <option th:value="wednesday">Wednesday</option>
+                                <option th:value="thursday">Thursday</option>
+                                <option th:value="Friday">Friday</option>
+                            </select>
+                        </div>
+
+
+                        <div class="input-box">
+                            <label>End Working Day</label>
+                            <select th:field="*{endDay}">
+                                <!-- <option th:text="${hiddenGem.endDay}"></option> -->
+
+                                <option th:value="saturday">Saturday</option>
+                                <option th:value="sunday">Sunday</option>
+                                <option th:value="monday">Monday</option>
+                                <option th:value="tuesday">Tuesday</option>
+                                <option th:value="wednesday">Wednesday</option>
+                                <option th:value="thursday">Thursday</option>
+                                <option th:value="Friday">Friday</option>
+                            </select>
+                        </div>
+
+                        <div class="input-box" id="startWorkingTime">
+                            <label for="hours">start Working Time</label>
+                            <input type="time" id="startWorkingTime" th:field="*{startWorkingTime}"
+                                placeholder="start Working Time">
+                        </div>
+                        <div class="input-box" id="endWorkingTime">
+                            <label for="hours">End Working Time</label>
+                            <input type="time" id="endWorkingTime" th:field="*{endWorkingTime}"
+                                placeholder="End Working Time">
+                        </div>
+                        <div>
+                            <button type="submit" name="submit" id="submit-button" value="submit">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        <!-- MAIN -->
+    </section>
+</body>
+
+</html>
