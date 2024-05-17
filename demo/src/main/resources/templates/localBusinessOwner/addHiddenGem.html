@@ -45,8 +45,7 @@
 
             <div class="table-data">
                 <div class="order">
-                    <form class="form" th:action="@{/LocalBusinessOwner/addHiddenGem}" th:object="${hiddenGem}"
-                        method="post">
+                    <form class="form" th:action="@{/LocalBusinessOwner/addHiddenGem}" th:object="${hiddenGem}" method="post">
                         <div class="input-box">
                             <label>Place</label>
                             <input type="text" id="name" th:field="*{name}" placeholder="Place">
@@ -104,8 +103,7 @@
                                 placeholder="End Working Time">
                         </div>
                         <div>
-                            <button type="submit" name="submit" id="submit-button" value="submit">Add Hidden Gem
-                                Information</button>
+                            <button type="submit" name="submit" id="submit-button" value="submit">Add Hidden Gem Information</button>
                         </div>
                     </form>
                 </div>
