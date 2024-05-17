@@ -1,0 +1,205 @@
+package com.example.demo.models;
+
+import java.time.LocalTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.util.Objects;
+
+@Entity
+public class HistoricalPlaces {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private String city;
+    private String description;
+    private String location;
+    private String image;
+    private String startDay;
+    private String endDay;
+    private LocalTime startWorkingTime;
+    private LocalTime endWorkingTime;
+
+
+    public HistoricalPlaces() {
+    }
+
+    public HistoricalPlaces(int id, String name, String city, String description, String location, String image, String startDay, String endDay, LocalTime startWorkingTime, LocalTime endWorkingTime) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+        this.description = description;
+        this.location = location;
+        this.image = image;
+        this.startDay = startDay;
+        this.endDay = endDay;
+        this.startWorkingTime = startWorkingTime;
+        this.endWorkingTime = endWorkingTime;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getStartDay() {
+        return this.startDay;
+    }
+
+    public void setStartDay(String startDay) {
+        this.startDay = startDay;
+    }
+
+    public String getEndDay() {
+        return this.endDay;
+    }
+
+    public void setEndDay(String endDay) {
+        this.endDay = endDay;
+    }
+
+    public LocalTime getStartWorkingTime() {
+        return this.startWorkingTime;
+    }
+
+    public void setStartWorkingTime(LocalTime startWorkingTime) {
+        this.startWorkingTime = startWorkingTime;
+    }
+
+    public LocalTime getEndWorkingTime() {
+        return this.endWorkingTime;
+    }
+
+    public void setEndWorkingTime(LocalTime endWorkingTime) {
+        this.endWorkingTime = endWorkingTime;
+    }
+
+    public HistoricalPlaces id(int id) {
+        setId(id);
+        return this;
+    }
+
+    public HistoricalPlaces name(String name) {
+        setName(name);
+        return this;
+    }
+
+    public HistoricalPlaces city(String city) {
+        setCity(city);
+        return this;
+    }
+
+    public HistoricalPlaces description(String description) {
+        setDescription(description);
+        return this;
+    }
+
+    public HistoricalPlaces location(String location) {
+        setLocation(location);
+        return this;
+    }
+
+    public HistoricalPlaces image(String image) {
+        setImage(image);
+        return this;
+    }
+
+    public HistoricalPlaces startDay(String startDay) {
+        setStartDay(startDay);
+        return this;
+    }
+
+    public HistoricalPlaces endDay(String endDay) {
+        setEndDay(endDay);
+        return this;
+    }
+
+    public HistoricalPlaces startWorkingTime(LocalTime startWorkingTime) {
+        setStartWorkingTime(startWorkingTime);
+        return this;
+    }
+
+    public HistoricalPlaces endWorkingTime(LocalTime endWorkingTime) {
+        setEndWorkingTime(endWorkingTime);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof HistoricalPlaces)) {
+            return false;
+        }
+        HistoricalPlaces historicalPlaces = (HistoricalPlaces) o;
+        return id == historicalPlaces.id && Objects.equals(name, historicalPlaces.name) && Objects.equals(city, historicalPlaces.city) && Objects.equals(description, historicalPlaces.description) && Objects.equals(location, historicalPlaces.location) && Objects.equals(image, historicalPlaces.image) && Objects.equals(startDay, historicalPlaces.startDay) && Objects.equals(endDay, historicalPlaces.endDay) && Objects.equals(startWorkingTime, historicalPlaces.startWorkingTime) && Objects.equals(endWorkingTime, historicalPlaces.endWorkingTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, city, description, location, image, startDay, endDay, startWorkingTime, endWorkingTime);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", city='" + getCity() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", location='" + getLocation() + "'" +
+            ", image='" + getImage() + "'" +
+            ", startDay='" + getStartDay() + "'" +
+            ", endDay='" + getEndDay() + "'" +
+            ", startWorkingTime='" + getStartWorkingTime() + "'" +
+            ", endWorkingTime='" + getEndWorkingTime() + "'" +
+            "}";
+    }
+    
+}
