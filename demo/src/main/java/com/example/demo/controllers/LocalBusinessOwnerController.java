@@ -67,4 +67,10 @@ public class LocalBusinessOwnerController {
         return new ModelAndView("redirect:/LocalBusinessOwner/hiddenGemInfo"); 
     }
 
+    @GetMapping("deleteHiddenGemInfo/{id}")
+    public ModelAndView deleteHiddenGemInfo(@PathVariable("id") int id) {
+        this.hiddenGemRepository.deleteById(id);
+        return new ModelAndView("redirect:/LocalBusinessOwner/hiddenGemInfo"); 
+    }
+
 }
