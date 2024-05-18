@@ -59,6 +59,12 @@ public class AdminController {
     return new ModelAndView("redirect:/admin/businessOwners");
     }
 
+    @GetMapping("deleteBusinessOwner/{id}")
+    public ModelAndView deleteBusinessOwner(@PathVariable("id") int id) {
+        localBusinessOwnerRepository.deleteById(id);
+        return new ModelAndView("redirect:/admin/businessOwners"); 
+    }
+
 
 
 
