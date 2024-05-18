@@ -31,7 +31,7 @@ public class HiddenGem {
 
     public HiddenGem() {
     }
- 
+
     public HiddenGem(int id, String name, String city, String description, String location, String image, String startDay, String endDay, LocalTime startWorkingTime, LocalTime endWorkingTime) {
         this.id = id;
         this.name = name;

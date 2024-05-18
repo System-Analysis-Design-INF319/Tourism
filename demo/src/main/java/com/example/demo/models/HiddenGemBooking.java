@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
  
 import java.util.Objects;
 
-@Entity
+@Entity 
 public class HiddenGemBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
