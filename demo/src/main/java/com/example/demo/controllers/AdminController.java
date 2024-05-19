@@ -13,6 +13,8 @@ import com.example.demo.models.HistoricalPlace;
 import com.example.demo.models.LocalBusinessOwner;
 import com.example.demo.repositories.HistoricalPlaceRepository;
 import com.example.demo.repositories.LocalBusinessOwnerRepository;
+import com.example.demo.repositories.userRepository;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -22,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private HistoricalPlaceRepository historicalPlaceRepository;
+
+    @Autowired
+    private userRepository UserRepository;
 
 
     @GetMapping("businessOwners")
@@ -81,5 +86,14 @@ public class AdminController {
         this.historicalPlaceRepository.save(historicalPlace);
         return new ModelAndView("redirect:/admin/addHistoricalPlace");
     }
+
+    
+
+    @GetMapping("/tourists")
+    public ModelAndView getAllTourists() {
+        ModelAndView mav = new ModelAndView("/admin/tourists.html");
+        mav.addObject("tourists", UserRepository.findAll());
+        return mav;
+}
 
 }

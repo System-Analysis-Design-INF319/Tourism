@@ -137,7 +137,9 @@
 
                 </nav>
 
-                <button class="btn btn-primary">Book Now</button>
+                <button class="btn btn-primary">Book Now</button>&nbsp;
+                <li th:if="${username != null}" class="split"><a href="#" style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"  ></a></li>&nbsp;&nbsp;&nbsp;
+                <li th:if="${username != null}" class="split"><a href="/logout" style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
 
             </div>
         </div>

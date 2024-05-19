@@ -114,6 +114,7 @@ public class userController {
     public ModelAndView viewIndex(HttpSession session) {
         ModelAndView mav = new ModelAndView("/tourist/index.html");
         mav.addObject("username", (String) session.getAttribute("username"));
+        mav.addObject ("usertype", (String) session.getAttribute("usertype"));
         return mav;
     }
 
@@ -146,6 +147,11 @@ public class userController {
         session.setAttribute("username", dbUser.getUsername());
         return new ModelAndView("redirect:/User/index");
 
+    }
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session) {
+        session.invalidate();
+        return new ModelAndView("redirect:/User/index");
     }
 
 }
