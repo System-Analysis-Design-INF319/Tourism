@@ -51,7 +51,7 @@
                     <span th:if="${message != null}" class= "closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                     <span th:text="${message}"></span>
                     <span>
-                        <a th:if="${booking == null}" id="messageLink" th:href="@{/booking/user/my-bookings}">View Your Bookings</a>
+                        <a th:if="${booking == null}" id="messageLink" th:href="@{/booking/user/my-bus-bookings}">View Your Bookings</a>
                     </span>
                 </div>
             </div>

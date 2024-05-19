@@ -101,7 +101,7 @@ public class BookingController {
     response.sendRedirect("user/my-bookings");
   }
 
-  @GetMapping("LocalBusinessOwner/bookings")
+  @GetMapping("LocalBusinessOwner/HiddenGemBookings")
   public ModelAndView viewLocalBusinessOwnerBookings(HttpSession session, HttpServletResponse response)
       throws IOException {
     ModelAndView mav = new ModelAndView("/localBusinessOwner/bookings.html");
@@ -117,6 +117,7 @@ public class BookingController {
     return mav;
   }
 
+  /****** Bus Booking ******/
 
   @GetMapping("bus")
   public ModelAndView bookBus() {
@@ -139,9 +140,8 @@ public class BookingController {
     int numberOfBookings = busBookingRepository.countByBusId(id);
 
     if (exists) {
-      this.message="Can't Book Another Trip!, You already have a booked one";
+      this.message = "Can't Book Another Trip!, You already have a booked one";
       response.sendRedirect("/booking/bus");
-
     }
 
     else {
@@ -158,7 +158,7 @@ public class BookingController {
         if (numberOfBookings == capacity - 1) {
           bus.setFull(1);
         }
-        response.sendRedirect("/booking/user/my-bookings");
+        response.sendRedirect("/booking/user/my-bus-bookings");
       } else {
         response.sendRedirect("/User/login");
       }
@@ -171,11 +171,11 @@ public class BookingController {
     Long userId = (Long) session.getAttribute("user_id");
 
     if (userId != null) {
-      Boolean busExists = busBookingRepository.existsByUserId(userId); 
-      if(busExists) {
+      Boolean busExists = busBookingRepository.existsByUserId(userId);
+      if (busExists) {
         List<BusBooking> booking = this.busBookingRepository.findByUserId(userId);
         mav.addObject("bookings", booking);
-      }else { 
+      } else {
         mav.addObject("bookings", null);
         mav.addObject("message", "You don't have any bookings");
       }
@@ -184,4 +184,17 @@ public class BookingController {
     }
     return mav;
   }
+
+  @GetMapping("bus-cancelled")
+  public void cancelBusBooking(@RequestParam int id, HttpServletResponse response) throws IOException {
+    BusBooking busBooking = busBookingRepository.findById(id).get();
+    Bus bus = busRepository.findById(busBooking.getBusId()).get();
+    if (bus.getFull() == 1) {
+      bus.setFull(0);
+    }
+
+    this.busBookingRepository.delete(busBooking);
+    response.sendRedirect("user/my-bus-bookings");
+  }
+
 }

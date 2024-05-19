@@ -22,6 +22,9 @@ public class Bus {
 
      public Bus() {
      }
+     public Bus(int id) {
+          this.id = id;
+     }
 
      public Bus(int id, String source, String destination, double price, LocalTime time, int capacity, int full) {
           this.id = id;
