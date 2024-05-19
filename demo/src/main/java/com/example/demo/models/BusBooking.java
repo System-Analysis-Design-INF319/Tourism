@@ -20,7 +20,6 @@ public class BusBooking {
     private String destination;
     private double price;
     private LocalTime time;
-    private int capacity;
 
     @Column(name = "user_id", updatable = false, insertable = false)
     private Long userId;
@@ -34,17 +33,15 @@ public class BusBooking {
     @ManyToOne
     Bus bus;
 
-
     public BusBooking() {
     }
 
-    public BusBooking(int id, String source, String destination, double price, LocalTime time, int capacity, Long userId, int busId, user user, Bus bus) {
+    public BusBooking(int id, String source, String destination, double price, LocalTime time, Long userId, int busId, user user, Bus bus) {
         this.id = id;
         this.source = source;
         this.destination = destination;
         this.price = price;
         this.time = time;
-        this.capacity = capacity;
         this.userId = userId;
         this.busId = busId;
         this.user = user;
@@ -89,14 +86,6 @@ public class BusBooking {
 
     public void setTime(LocalTime time) {
         this.time = time;
-    }
-
-    public int getCapacity() {
-        return this.capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     public Long getUserId() {
@@ -156,11 +145,6 @@ public class BusBooking {
         return this;
     }
 
-    public BusBooking capacity(int capacity) {
-        setCapacity(capacity);
-        return this;
-    }
-
     public BusBooking userId(Long userId) {
         setUserId(userId);
         return this;
@@ -189,12 +173,12 @@ public class BusBooking {
             return false;
         }
         BusBooking busBooking = (BusBooking) o;
-        return id == busBooking.id && Objects.equals(source, busBooking.source) && Objects.equals(destination, busBooking.destination) && price == busBooking.price && Objects.equals(time, busBooking.time) && capacity == busBooking.capacity && Objects.equals(userId, busBooking.userId) && busId == busBooking.busId && Objects.equals(user, busBooking.user) && Objects.equals(bus, busBooking.bus);
+        return id == busBooking.id && Objects.equals(source, busBooking.source) && Objects.equals(destination, busBooking.destination) && price == busBooking.price && Objects.equals(time, busBooking.time) && Objects.equals(userId, busBooking.userId) && busId == busBooking.busId && Objects.equals(user, busBooking.user) && Objects.equals(bus, busBooking.bus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, source, destination, price, time, capacity, userId, busId, user, bus);
+        return Objects.hash(id, source, destination, price, time, userId, busId, user, bus);
     }
 
     @Override
@@ -205,7 +189,6 @@ public class BusBooking {
             ", destination='" + getDestination() + "'" +
             ", price='" + getPrice() + "'" +
             ", time='" + getTime() + "'" +
-            ", capacity='" + getCapacity() + "'" +
             ", userId='" + getUserId() + "'" +
             ", busId='" + getBusId() + "'" +
             ", user='" + getUser() + "'" +

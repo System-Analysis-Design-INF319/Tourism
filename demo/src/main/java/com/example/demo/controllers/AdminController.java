@@ -70,9 +70,6 @@ public class AdminController {
         return new ModelAndView("redirect:/admin/businessOwners"); 
     }
 
-
-
-
     @GetMapping("addHistoricalPlace")
     public ModelAndView addHistoricalPlaces() {
         ModelAndView mav = new ModelAndView("/admin/addHistoricalPlaces.html");
@@ -88,7 +85,6 @@ public class AdminController {
     }
 
     
-
     @GetMapping("/tourists")
     public ModelAndView getAllTourists() {
         ModelAndView mav = new ModelAndView("/admin/tourists.html");
