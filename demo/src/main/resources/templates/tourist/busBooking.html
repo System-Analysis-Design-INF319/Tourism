@@ -8,100 +8,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/tourist/booking.css">
     <link rel="stylesheet" href="/css/tourist/index.css">
+    <link rel="stylesheet" href="/css/tourist/busBooking.css">
 
 </head>
 
 <body>
     <header th:replace="fragments/userHeader :: userHeader"></header>
-    <div class="bodyContainer">
-        <div class="container">
-            <h3 class="getquotetext">Bus Booking</h3>
-
-            <div class="blocks">
-                <div class="left">
-                    <form class="form" th:action="@{/booking/booked(id=${hiddenGemId})}" method="post">
-                        <!-- <div th:field="${hiddenGemId}"></div> -->
-                        <p>Day</p>
-                        <div class="select">
-                            <select id="day" name="day">
-                                <option disabled selected>Please select...</option>
-                                <!-- <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option> -->
-                            </select>
-                        </div>
-
-                        <p>Time</p>
-                        <div class="select">
-                            <select id="time" name="time">
-                                <option disabled selected>Please select...</option>
-                                <!-- <option th:each="hour : ${hours}" th:value="${hour}" th:text="${hour}"></option> -->
-                            </select>
-                        </div>
-
-                        <p>Number of people</p>
-                        <div class="select">
-                            <select id="peopleNum" name="peopleNum">
-                                <option disabled selected>Please select...</option>
-                                <!-- <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"> -->
-                                </option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="right">
-                    <div class="trip-detail-container">
-                        <div class="one-way-container">
-                            <h3 class="trip-detail-title">Booking Details</h3>
-                            <table>
-                                <table>
-                                    <tr>
-                                        <td>From</td>
-                                        <td>Thunder Bay</td>
-                                    </tr>
-                                    <tr>
-                                        <td>To</td>
-                                        <td>Longlac</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Transfers</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Departure</td>
-                                        <td>2021-08-28 18:00:00 ET</td>
-                                    </tr>
-                                </table>
-                            </table>
-                        </div>
-                        <hr>
-                        <div class="price-container">
-                            <h3 class="trip-detail-title">Price</h3>
-                            <table>
+    <main>
+        <div class="bodyContainer">
+            <div class="container">
+                <div class="table-data">
+                    <div class="order">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>Base Price</td>
-                                    <td>CA $300</td>
+                                    <th>Pick up Point</th>
+                                    <th>Destination</th>
+                                    <th>Time</th>
+                                    <th>Price</th>
+                                    <th>Book</th>
                                 </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <td>CA $30</td>
+                            </thead>
+                            <tbody>
+                                <tr th:each="bus: ${busses}">
+                                    <td th:text="${bus.source}"></td>
+                                    <td th:text="${bus.destination}"></td>
+                                    <td th:text="${bus.time}"></td>
+                                    <td th:text="${bus.price}"></td>
+                                    <td>
+                                        <a class="buttons" id="booking"
+                                            th:href="@{/booking/busbooked(id=${bus.id})}">Book</a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Total Price</td>
-                                    <td>CA $330</td>
-                                </tr>
-                            </table>
-                        </div>
+                                
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="buttons">
-                <button type="button">Save</button>
-                <button type="button">Book Ticket</button>
-            </div>
         </div>
-    </div>
+    </main>
     <footer th:replace="fragments/userFooter :: userFooter"></footer>
 </body>
 

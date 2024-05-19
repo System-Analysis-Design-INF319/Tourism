@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.Bus;
+import com.example.demo.models.BusBooking;
 import com.example.demo.models.HiddenGem;
 import com.example.demo.models.HiddenGemBooking;
 import com.example.demo.models.user;
 import com.example.demo.repositories.HiddenGemRepository;
+import com.example.demo.repositories.BusBookingRepository;
 import com.example.demo.repositories.BusRepository;
 import com.example.demo.repositories.HiddenGemBookingRepository;
 
@@ -32,6 +34,10 @@ public class BookingController {
   HiddenGemRepository hiddenGemRepository;
   @Autowired
   HiddenGemBookingRepository hiddenGemBookingRepository;
+  @Autowired
+  BusRepository busRepository;
+  @Autowired
+  BusBookingRepository busBookingRepository;
 
   @GetMapping("user/book-hiddengem")
   public ModelAndView BookHiddenGem(@RequestParam int id, HttpSession session) {
@@ -112,6 +118,45 @@ public class BookingController {
   @GetMapping("bus")
   public ModelAndView bookBus() {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
+    List<Bus> busses = busRepository.findAll();
+    mav.addObject("busses", busses);
     return mav;
+  }
+
+  @GetMapping("busbooked")
+  public void busBooked(@RequestParam int id, HttpServletResponse response, HttpSession session) throws IOException {
+    String message = null;
+    Bus bus = busRepository.findById(id).get();
+    BusBooking booking = new BusBooking();
+    Long userId = (Long) session.getAttribute("user_id");
+    Boolean exists = busBookingRepository.existsByUserId(userId);
+    int capacity = bus.getCapacity();
+    int numberOfBookings = busBookingRepository.countByBusId(bus.getId());
+
+    if (exists) {
+      message = "Can't Book Another Trip!, You already have a booked one.";
+      response.sendRedirect("/booking/bus");
+    }
+
+    else {
+      if (userId != null) {
+        user user = new user();
+        user.setId(userId);
+        booking.setUser(user);
+        booking.setBus(bus);
+        booking.setSource(bus.getSource());
+        booking.setDestination(bus.getDestination());
+        booking.setTime(bus.getTime());
+        booking.setPrice(bus.getPrice());
+        busBookingRepository.save(booking);
+        if (numberOfBookings == capacity) {
+          busRepository.delete(bus);
+        }
+        message = "Your booking has been successfully saved";
+        response.sendRedirect("/booking/bus");
+      } else {
+        response.sendRedirect("/User/login");
+      }
+    }
   }
 }

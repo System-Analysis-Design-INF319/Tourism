@@ -24,7 +24,7 @@ public class BusController {
         ModelAndView mav = new ModelAndView("/admin/addTransportation.html");
         Bus newBus= new Bus();
         mav.addObject("bus", newBus);
-        return mav;
+        return mav; 
        
     }
     @PostMapping("addBus")
