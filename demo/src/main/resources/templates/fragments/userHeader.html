@@ -4,14 +4,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
-    <header class="header" data-header th:fragment="userHeader">
+  <header class="header" data-header th:fragment="userHeader">
 
-        <div class="overlay" data-overlay></div>
+    <div class="overlay" data-overlay></div>
 
-        <div class="header-top">
-            <!-- <div class="container"> -->
+    <div class="header-top">
+      <!-- <div class="container"> -->
 
-            <!-- <a href="tel:+01123456790" class="helpline-box">
+      <!-- <a href="tel:+01123456790" class="helpline-box">
     
               <div class="icon-box">
                 <ion-icon name="call-outline"></ion-icon>
@@ -25,30 +25,30 @@
     
             </a> -->
 
-            <!-- <a href="#" class="logo">
+      <!-- <a href="#" class="logo">
               <img src="/images/logo.svg" alt="Tourly logo">
             </a> -->
 
-            <div class="header-btn-group">
+      <div class="header-btn-group">
 
-                <!-- <button class="search-btn" aria-label="Search">
+        <!-- <button class="search-btn" aria-label="Search">
                 <ion-icon name="search"></ion-icon>
               </button> -->
 
-                <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
-                    <ion-icon name="menu-outline"></ion-icon>
-                </button>
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
 
-            </div>
+      </div>
 
-            <!-- </div> -->
+      <!-- </div> -->
 
-        </div>
+    </div>
 
-        <div class="header-bottom">
-            <div class="container">
+    <div class="header-bottom">
+      <div class="container">
 
-                <!-- <ul class="social-list">
+        <!-- <ul class="social-list">
     
               <li>
                 <a href="#" class="social-link">
@@ -70,42 +70,44 @@
     
             </ul> -->
 
-                <nav class="navbar" data-navbar>
+        <nav class="navbar" data-navbar>
 
-                    <div class="navbar-top">
+          <div class="navbar-top">
 
-                        <a href="#" class="logo">
-                            <img src="/images/logo-blue.svg" alt="Tourly logo">
-                        </a>
+            <a href="#" class="logo">
+              <img src="/images/logo-blue.svg" alt="Tourly logo">
+            </a>
 
-                        <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
-                            <ion-icon name="close-outline"></ion-icon>
-                        </button>
+            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
 
-                    </div>
+          </div>
 
-                    <ul class="navbar-list">
+          <ul class="navbar-list">
 
 
-                        <li>
-                            <a th:href="@{/User/index}" class="navbar-link" data-nav-link>Home</a>
-                        </li>
+            <li>
+              <a th:href="@{/User/index}" class="navbar-link" data-nav-link>Home</a>
+            </li>
 
-                        <li>
-                            <a th:href="@{/booking/user/my-bookings}" class="navbar-link" data-nav-link>My Bookings</a>
-                        </li>
+            <li>
+              <a th:href="@{/booking/user/my-bookings}" class="navbar-link" data-nav-link>My Hidden Gem Bookings</a>
+            </li>
+            <li>
+              <a th:href="@{/booking/user/my-bus-bookings}" class="navbar-link" data-nav-link>My Bus Bookings</a>
+            </li>
+            <li>
+              <a th:href="@{/hiddenGems}" class="navbar-link" data-nav-link>Hidden Gems</a>
+            </li>
+            <li>
+              <a th:href="@{/historicalPlaces}" class="navbar-link" data-nav-link>Historical Places</a>
+            </li>
 
-                        <li>
-                            <a th:href="@{/hiddenGems}" class="navbar-link" data-nav-link>Hidden Gems</a>
-                        </li>
-                        <li>
-                          <a th:href="@{/historicalPlaces}" class="navbar-link" data-nav-link>Historical Places</a>
-                        </li>
-
-                        <li>
-                            <a th:href="@{/booking/bus}" class="navbar-link" data-nav-link>Bus Booking</a>
-                        </li>
-                        <!-- <li>
+            <li>
+              <a th:href="@{/booking/bus}" class="navbar-link" data-nav-link>Bus Booking</a>
+            </li>
+            <!-- <li>
                   <a href="#destination" class="navbar-link" data-nav-link>destination</a>
                 </li>
     
@@ -121,30 +123,32 @@
                   <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
                 </li> -->
 
-                        <li>
-                            <a th:href="@{/User/login}" class="navbar-link" data-nav-link>login</a>
-                        </li>
+            <li>
+              <a th:href="@{/User/login}" class="navbar-link" data-nav-link>login</a>
+            </li>
 
-                        <li>
-                            <div class="search-container">
-                                <input type="text" id="searchInput" placeholder="Search for places..."
-                                    onkeyup="sendproduct(this)">
-                                <div id="prodsearch"><!-- Search results will appear here --></div>
-                            </div>
-                        </li>
+            <li>
+              <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for places..." onkeyup="sendproduct(this)">
+                <div id="prodsearch"><!-- Search results will appear here --></div>
+              </div>
+            </li>
 
-                    </ul>
+          </ul>
 
-                </nav>
+        </nav>
 
-                <button class="btn btn-primary">Book Now</button>&nbsp;
-                <li th:if="${username != null}" class="split"><a href="#" style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"  ></a></li>&nbsp;&nbsp;&nbsp;
-                <li th:if="${username != null}" class="split"><a href="/logout" style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+        <button class="btn btn-primary">Book Now</button>&nbsp;
+        <li th:if="${username != null}" class="split"><a href="#"
+            style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
+        &nbsp;&nbsp;&nbsp;
+        <li th:if="${username != null}" class="split"><a href="/logout"
+            style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
 
-            </div>
-        </div>
+      </div>
+    </div>
 
-    </header>
+  </header>
 </body>
 
 </html>

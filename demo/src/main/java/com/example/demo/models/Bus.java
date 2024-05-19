@@ -15,7 +15,7 @@ public class Bus {
      private int id;
      private String source;
      private String destination;
-     private double price;
+     private double price; 
      private LocalTime time;
      private int capacity;
      private int full;

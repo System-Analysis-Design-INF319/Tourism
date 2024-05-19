@@ -39,6 +39,7 @@ public class BookingController {
   @Autowired
   BusBookingRepository busBookingRepository;
 
+  private String message = null;
 
   @GetMapping("user/book-hiddengem")
   public ModelAndView BookHiddenGem(@RequestParam int id, HttpSession session) {
@@ -116,17 +117,18 @@ public class BookingController {
     return mav;
   }
 
+
   @GetMapping("bus")
   public ModelAndView bookBus() {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
     List<Bus> busses = busRepository.findByFullCapacity();
     mav.addObject("busses", busses);
+    mav.addObject("message", this.message);
     return mav;
   }
 
   @GetMapping("busbooked")
   public void busBooked(@RequestParam int id, HttpServletResponse response, HttpSession session) throws IOException {
-    String message = null;
     Bus bus = busRepository.findById(id).get();
     Long userId = (Long) session.getAttribute("user_id");
 
@@ -137,8 +139,9 @@ public class BookingController {
     int numberOfBookings = busBookingRepository.countByBusId(id);
 
     if (exists) {
-      message = "Can't Book Another Trip!, You already have a booked one";
+      this.message="Can't Book Another Trip!, You already have a booked one";
       response.sendRedirect("/booking/bus");
+
     }
 
     else {
@@ -155,12 +158,30 @@ public class BookingController {
         if (numberOfBookings == capacity - 1) {
           bus.setFull(1);
         }
-
-        message = "Your booking has been successfully saved";
-        response.sendRedirect("/booking/bus");
+        response.sendRedirect("/booking/user/my-bookings");
       } else {
         response.sendRedirect("/User/login");
       }
     }
+  }
+
+  @GetMapping("user/my-bus-bookings")
+  public ModelAndView viewBusBookings(HttpSession session, HttpServletResponse response) throws IOException {
+    ModelAndView mav = new ModelAndView("/tourist/viewBusBookings.html");
+    Long userId = (Long) session.getAttribute("user_id");
+
+    if (userId != null) {
+      Boolean busExists = busBookingRepository.existsByUserId(userId); 
+      if(busExists) {
+        List<BusBooking> booking = this.busBookingRepository.findByUserId(userId);
+        mav.addObject("bookings", booking);
+      }else { 
+        mav.addObject("bookings", null);
+        mav.addObject("message", "You don't have any bookings");
+      }
+    } else {
+      response.sendRedirect("/User/login");
+    }
+    return mav;
   }
 }

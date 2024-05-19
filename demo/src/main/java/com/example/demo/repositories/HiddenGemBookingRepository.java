@@ -10,4 +10,4 @@ public interface HiddenGemBookingRepository extends JpaRepository<HiddenGemBooki
     Boolean existsByUserId (Long userId);
     List <HiddenGemBooking> findByUserId (Long userId);
 }
- 
+   
