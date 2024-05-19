@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>AdminHub</title>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/css/admin/tables.css">
+    <link rel="icon" href="../../images/logo.png" type="image/icon type" />
+</head>
+
+<body>
+    <section th:replace="fragments/adminSidebar :: adminSidebar"></section>
+
+    <section id="content">
+        <nav th:replace="fragments/adminNavbar :: adminNavbar"></nav>
+
+        <main>
+
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">My Bus Bookings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bus Number</th>
+                                <th>Pick Up Point</th>
+                                <th>Destination</th>
+                                <th>Booked By</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="booking: ${bookings}">
+                            <td th:text="${booking.id}"></td>
+                            <td th:text="${booking.source}"></td>
+                            <td th:text="${booking.destination}"></td>
+                            <td th:text="${booking.user.fullname}"></td>
+                            <td th:text="${booking.time}"></td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </section>
+</body>
+
+</html>

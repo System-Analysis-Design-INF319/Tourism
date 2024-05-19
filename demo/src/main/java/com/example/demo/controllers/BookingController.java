@@ -197,4 +197,12 @@ public class BookingController {
     response.sendRedirect("user/my-bus-bookings");
   }
 
+  @GetMapping("admin/busBookings")
+  public ModelAndView viewAdminBusBookings(HttpServletResponse response) throws IOException {
+    ModelAndView mav = new ModelAndView("/admin/busBookings.html");
+    List<BusBooking> booking = this.busBookingRepository.findAll();
+    mav.addObject("bookings", booking);
+    return mav;
+  }
+
 }
