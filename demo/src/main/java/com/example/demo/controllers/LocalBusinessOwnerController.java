@@ -28,7 +28,6 @@ public class LocalBusinessOwnerController {
         mav.addObject("hiddenGem", newHiddenGem);
         return mav;
     }
-
     @PostMapping("addHiddenGem")
     public ModelAndView saveHiddenGem(@ModelAttribute HiddenGem hiddenGem) {
         this.hiddenGemRepository.save(hiddenGem);
