@@ -71,7 +71,7 @@ public class AdminController {
         localBusinessOwnerRepository.deleteById(id);
         return new ModelAndView("redirect:/admin/businessOwners"); 
     }
-    
+
 
     @GetMapping("addHistoricalPlace")
     public ModelAndView addHistoricalPlaces() {
@@ -92,6 +92,30 @@ public class AdminController {
         List<HistoricalPlace> historicalPlaces = this.historicalPlaceRepository.findAll();
         mav.addObject("historicalPlaces", historicalPlaces);
         return mav;
+    }
+
+    @GetMapping("editHistoricalPlaceInfo/{id}")
+    public ModelAndView editHistoricalPlaceInfo(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView("/admin/editHistoricalPlaceInfo.html");
+        HistoricalPlace historicalPlace = this.historicalPlaceRepository.findById(id); 
+        mav.addObject("historicalPlace", historicalPlace);
+        return mav;
+    }
+    @PostMapping("editHistoricalPlaceInfo/{id}")
+    public ModelAndView editHistoricalPlaceInfo(@PathVariable("id") int id, @ModelAttribute HistoricalPlace updatedHistoricalPlace) {
+        HistoricalPlace existingHistoricalPlace = this.historicalPlaceRepository.findById(id);
+        existingHistoricalPlace.setName(updatedHistoricalPlace.getName());
+        existingHistoricalPlace.setCity(updatedHistoricalPlace.getCity());
+        existingHistoricalPlace.setDescription(updatedHistoricalPlace.getDescription());
+        existingHistoricalPlace.setLocation(updatedHistoricalPlace.getLocation());
+        existingHistoricalPlace.setImage(updatedHistoricalPlace.getImage());
+        existingHistoricalPlace.setStartDay(updatedHistoricalPlace.getStartDay());
+        existingHistoricalPlace.setEndDay(updatedHistoricalPlace.getEndDay());
+        existingHistoricalPlace.setStartWorkingTime(updatedHistoricalPlace.getStartWorkingTime());
+        existingHistoricalPlace.setEndWorkingTime(updatedHistoricalPlace.getEndWorkingTime());
+
+        historicalPlaceRepository.save(existingHistoricalPlace); 
+        return new ModelAndView("redirect:/admin/editHistoricalPlaceInfo"); 
     }
 
     
