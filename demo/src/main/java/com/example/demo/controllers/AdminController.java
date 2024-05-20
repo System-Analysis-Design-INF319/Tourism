@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.models.HiddenGem;
 import com.example.demo.models.HistoricalPlace;
 import com.example.demo.models.LocalBusinessOwner;
 import com.example.demo.repositories.HistoricalPlaceRepository;
@@ -72,6 +71,7 @@ public class AdminController {
         localBusinessOwnerRepository.deleteById(id);
         return new ModelAndView("redirect:/admin/businessOwners"); 
     }
+    
 
     @GetMapping("addHistoricalPlace")
     public ModelAndView addHistoricalPlaces() {

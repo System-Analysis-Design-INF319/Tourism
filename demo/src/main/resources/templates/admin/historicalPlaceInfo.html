@@ -1,0 +1,97 @@
+<html xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/css/admin/profile.css">
+    <link rel="icon" href="/images/logo.png" type="image/icon type" />
+</head>
+
+<body>
+	<!-- <section th:replace="fragments/adminSidebar :: adminSidebar"></section> -->
+    <!-- CONTENT -->
+    <section id="content">
+		<!-- <nav th:replace="fragments/adminNavbar :: adminNavbar"></nav> -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Historical Place</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Historical Place Information</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Historical Place Information</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row" th:each="historicalPlace: ${historicalPlaces}">
+                    <div class="col-md-3 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <img class="rounded-circle mt-5" width="150px" th:src="@{${'/images/'+historicalPlace.image}}" title="img">
+                        </div>
+                    </div>
+                    <div class="col-md-5 border-right">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right"> Details</h4>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <label class="labels">Place: </label>
+                                    <span th:text="${historicalPlace.name}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">City: </label>
+                                    <span th:text="${historicalPlace.city}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">Description: </label>
+                                    <span th:text="${historicalPlace.description}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">Location: </label>
+                                    <span th:text="${historicalPlace.location}"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="labels">Start Working Day: </label>
+                                    <span th:text="${historicalPlace.startDay}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">End Working Day: </label>
+                                    <span th:text="${historicalPlace.endDay}"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="labels">start Working Time: </label>
+                                    <span th:text="${historicalPlace.startWorkingTime}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">End Working Time: </label>
+                                    <span th:text="${historicalPlace.endWorkingTime}"></span>
+                                </div>
+                                <!-- <br> -->
+                                <a th:href="@{'/admin/historicalPlaceInfo/' + ${historicalPlace.id}}" class="profile-form">Edit Information</a>
+                                <br>
+                                <a th:href="@{'/admin/historicalPlaceInfo/' + ${historicalPlace.id}}" class="profile-form">Delete Information</a>
+
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </main>
+    </section>
+</body>
+
+</html>
