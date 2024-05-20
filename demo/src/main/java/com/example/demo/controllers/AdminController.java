@@ -115,7 +115,7 @@ public class AdminController {
         existingHistoricalPlace.setEndWorkingTime(updatedHistoricalPlace.getEndWorkingTime());
 
         historicalPlaceRepository.save(existingHistoricalPlace); 
-        return new ModelAndView("redirect:/admin/editHistoricalPlaceInfo"); 
+        return new ModelAndView("redirect:/admin/historicalPlaceInfo"); 
     }
 
     
