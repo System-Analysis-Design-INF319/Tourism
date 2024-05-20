@@ -55,6 +55,7 @@
                                 <td th:text="${owner.name}"></td>
                                 <td th:text="${owner.email}"></td>
                                 <td th:text="${owner.phoneNumber}"></td>
+                                
                                 <td>
                                     <a th:href="@{/admin/editBusinessOwner/{id}(id=${owner.id})}">Edit</a>
                                     <a th:href="@{/admin/deleteBusinessOwner/{id}(id=${owner.id})}">Delete</a>

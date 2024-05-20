@@ -10,8 +10,8 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../static/css/admin/tables.css">
-    <link rel="icon" href="../../images/logo.png" type="image/icon type" />
+    <link rel="stylesheet" href="/css/admin/tables.css">
+    <link rel="icon" href="/images/logo.png" type="image/icon type" />
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="#">Transportation Details</a>
+                            <a class="active" href="#">Transportation Detalis</a>
                         </li>
                     </ul>
                 </div>
@@ -43,18 +43,27 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Action</th>
-
-                     
+                                <th>Source</th>
+                                <th>Destination</th>
+                                <th>Price</th>
+                                <th>Time</th>
+                                <th>Capacity</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <td >1</td>
-                            <td>
-                                <a class="buttons" id="edit">Edit</a>
-                                <a class="buttons" id="delete" type="submit">Delete</button>
-                            </td>
-
+                            <tr th:each="owner : ${busses}">
+                                <td th:text="${owner.id}"></td>
+                                <td th:text="${owner.source}"></td>
+                                <td th:text="${owner.destination}"></td>
+                                <td th:text="${owner.price}"></td>
+                                <td th:text="${owner.time}"></td>
+                                <td th:text="${owner.capacity}"></td>
+                                <td>
+                                    <a th:href="@{/Transportation/editBus/{id}(id=${owner.id})}">Edit</a>
+                                    <a th:href="@{/Transportation/deleteBus/{id}(id=${owner.id})}">Delete</a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -62,6 +71,8 @@
 
         </main>
     </section>
+
+    <script src="/JS/script.js"></script>
 </body>
 
 </html>

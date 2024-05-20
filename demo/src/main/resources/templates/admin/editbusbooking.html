@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/css/admin/adding.css">
+    <link rel="icon" href="/images/logo.png" type="image/icon type" />
+
+
+	<title>AdminHub</title>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+	<section th:replace="fragments/adminSidebar :: adminSidebar"></section>
+
+	<!-- CONTENT -->
+	<section id="content">
+		<nav th:replace="fragments/adminNavbar :: adminNavbar"></nav>
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Edit bus</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="index.html">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li>
+							<a class="active" href="#">Edit bus</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+            <div class="table-data">
+                <form class="form" th:action="@{/Transportation/editBus}" th:object="${bus}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="input-box">
+                        <label for="source">Source</label>
+                        <input type="text" id="source" th:field="*{source}" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" th:field="*{destination}" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="price">Price</label>
+                        <input type="text" id="price" th:field="*{price}" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="time">Time</label>
+                        <input type="text" id="time" th:field="*{time}" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="capacity">Capacity</label>
+                        <input type="text" id="capacity" th:field="*{capacity}" required>
+                    </div>
+                    <div>
+                        <button type="submit">Save Changes</button>
+                    </div>
+                </form>                
+            </div>
+        </main>
+    </section>
+    <script src="/JS/script.js"></script>
+</body>
+</html>
