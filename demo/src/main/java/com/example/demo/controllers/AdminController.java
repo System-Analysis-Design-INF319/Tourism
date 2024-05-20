@@ -118,6 +118,12 @@ public class AdminController {
         return new ModelAndView("redirect:/admin/historicalPlaceInfo"); 
     }
 
+    @GetMapping("deleteHistoricalPlaceInfo/{id}")
+    public ModelAndView deleteHistoricalPlaceInfo(@PathVariable("id") int id) {
+        this.historicalPlaceRepository.deleteById(id);
+        return new ModelAndView("redirect:/admin/historicalPlaceInfo"); 
+    }
+
     
     @GetMapping("/tourists")
     public ModelAndView getAllTourists() {
