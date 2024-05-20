@@ -11,19 +11,25 @@
 
     
 
-    <form th:action="@{/CreditCard}" th:object="${creditcard}" method="post">
+    <form th:action="@{/paydeposit/validate}" th:object="${creditcard}" method="post">
         <h1> Credit Card Information</h1>
+        <label for="CardName"><b>Card Name</b></label>
+        <input type="text" name="CardName" placeholder="Enter your name" required>
+        <p style="color: red" th:if="${hasCardNameError}" th:text="${CardName}"></p>
+ 
         <label for="CardNumber"><b>Card Number</b></label>
-        <input type="text" name="CardNumber" placeholder="" required>
-        <span style="color: red" th:if="${#fields.hasErrors('CardNumber')}" th:errors="*{CardNumber}"></span>
-
+        <input type="text" name="CardNumber" placeholder="Enter your card number"  required>
+        <p style="color: red" th:if="${hasCardNumberError}" th:text="${CardNumberError}"></p>
+        
        <label for="ExpiryDate"><b>Expiry Date</b></label>
-       <input type="text" name="ExpiryDate" placeholder="mm/yyyy" required>
-       <span style="color: red" th:if="${#fields.hasErrors('ExpiryDate')}" th:errors="*{ExpiryDate}"></span>
+       <input type="date" name="ExpiryDate" placeholder="mm/yyyy" required>
+       <p style="color: red" th:if="${hasExpiryDateError}" th:text="${ExpiryDateError}"></p>
 
        <label for="Cvv"><b>CVV</b></label>
-       <input type="text" name="Cvv" placeholder="XXX" required>
-       <span style="color: red" th:if="${#fields.hasErrors('Cvv')}" th:errors="*{Cvv}"></span>
+       <input type="text" name="Cvv" placeholder="XXX"  required >
+       <p style="color: red" th:if="${hasCvvError}" th:text="${CvvError}"></p>
+
+       <label th:if="${hasEmptyFieldsError}"th:text="${EmptyFieldsError}" style="color: red; text-decoration: underline;"></label>
        
        <button type="submit">Enter</button>
     </form>
