@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Objects;
-
+ 
 @Entity
 public class LocalBusinessOwner {
     @Id
@@ -15,6 +15,7 @@ public class LocalBusinessOwner {
     private String email;
     private String phoneNumber;
     private String password;
+
 
 
     public LocalBusinessOwner() {

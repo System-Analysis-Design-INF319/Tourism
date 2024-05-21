@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,8 +73,6 @@ public class AdminController {
     }
 
 
-
-
     @GetMapping("addHistoricalPlace")
     public ModelAndView addHistoricalPlaces() {
         ModelAndView mav = new ModelAndView("/admin/addHistoricalPlaces.html");
@@ -80,15 +80,51 @@ public class AdminController {
         mav.addObject("historicalPlace", newHistoricalPlace);
         return mav;
     }
-
     @PostMapping("addHistoricalPlace")
     public ModelAndView saveHiddenGem(@ModelAttribute HistoricalPlace historicalPlace) {
         this.historicalPlaceRepository.save(historicalPlace);
         return new ModelAndView("redirect:/admin/addHistoricalPlace");
     }
 
-    
+    @GetMapping("historicalPlaceInfo")
+    public ModelAndView getHistoricalPlaceInfo() {         
+        ModelAndView mav = new ModelAndView("/admin/historicalPlaceInfo.html");
+        List<HistoricalPlace> historicalPlaces = this.historicalPlaceRepository.findAll();
+        mav.addObject("historicalPlaces", historicalPlaces);
+        return mav;
+    }
 
+    @GetMapping("editHistoricalPlaceInfo/{id}")
+    public ModelAndView editHistoricalPlaceInfo(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView("/admin/editHistoricalPlaceInfo.html");
+        HistoricalPlace historicalPlace = this.historicalPlaceRepository.findById(id); 
+        mav.addObject("historicalPlace", historicalPlace);
+        return mav;
+    }
+    @PostMapping("editHistoricalPlaceInfo/{id}")
+    public ModelAndView editHistoricalPlaceInfo(@PathVariable("id") int id, @ModelAttribute HistoricalPlace updatedHistoricalPlace) {
+        HistoricalPlace existingHistoricalPlace = this.historicalPlaceRepository.findById(id);
+        existingHistoricalPlace.setName(updatedHistoricalPlace.getName());
+        existingHistoricalPlace.setCity(updatedHistoricalPlace.getCity());
+        existingHistoricalPlace.setDescription(updatedHistoricalPlace.getDescription());
+        existingHistoricalPlace.setLocation(updatedHistoricalPlace.getLocation());
+        existingHistoricalPlace.setImage(updatedHistoricalPlace.getImage());
+        existingHistoricalPlace.setStartDay(updatedHistoricalPlace.getStartDay());
+        existingHistoricalPlace.setEndDay(updatedHistoricalPlace.getEndDay());
+        existingHistoricalPlace.setStartWorkingTime(updatedHistoricalPlace.getStartWorkingTime());
+        existingHistoricalPlace.setEndWorkingTime(updatedHistoricalPlace.getEndWorkingTime());
+
+        historicalPlaceRepository.save(existingHistoricalPlace); 
+        return new ModelAndView("redirect:/admin/historicalPlaceInfo"); 
+    }
+
+    @GetMapping("deleteHistoricalPlaceInfo/{id}")
+    public ModelAndView deleteHistoricalPlaceInfo(@PathVariable("id") int id) {
+        this.historicalPlaceRepository.deleteById(id);
+        return new ModelAndView("redirect:/admin/historicalPlaceInfo"); 
+    }
+
+    
     @GetMapping("/tourists")
     public ModelAndView getAllTourists() {
         ModelAndView mav = new ModelAndView("/admin/tourists.html");

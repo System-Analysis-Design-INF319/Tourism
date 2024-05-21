@@ -39,6 +39,8 @@ public class BookingController {
   @Autowired
   BusBookingRepository busBookingRepository;
 
+  private String message = null;
+
   @GetMapping("user/book-hiddengem")
   public ModelAndView BookHiddenGem(@RequestParam int id, HttpSession session) {
     HiddenGem hiddenGem = hiddenGemRepository.findById(id);
@@ -99,7 +101,7 @@ public class BookingController {
     response.sendRedirect("user/my-bookings");
   }
 
-  @GetMapping("LocalBusinessOwner/bookings")
+  @GetMapping("LocalBusinessOwner/HiddenGemBookings")
   public ModelAndView viewLocalBusinessOwnerBookings(HttpSession session, HttpServletResponse response)
       throws IOException {
     ModelAndView mav = new ModelAndView("/localBusinessOwner/bookings.html");
@@ -115,26 +117,30 @@ public class BookingController {
     return mav;
   }
 
+  /****** Bus Booking ******/
+
   @GetMapping("bus")
   public ModelAndView bookBus() {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
-    List<Bus> busses = busRepository.findAll();
+    List<Bus> busses = busRepository.findByFullCapacity();
     mav.addObject("busses", busses);
+    mav.addObject("message", this.message);
     return mav;
   }
 
   @GetMapping("busbooked")
   public void busBooked(@RequestParam int id, HttpServletResponse response, HttpSession session) throws IOException {
-    String message = null;
     Bus bus = busRepository.findById(id).get();
-    BusBooking booking = new BusBooking();
     Long userId = (Long) session.getAttribute("user_id");
+
+    BusBooking busBooking = new BusBooking();
     Boolean exists = busBookingRepository.existsByUserId(userId);
+
     int capacity = bus.getCapacity();
-    int numberOfBookings = busBookingRepository.countByBusId(bus.getId());
+    int numberOfBookings = busBookingRepository.countByBusId(id);
 
     if (exists) {
-      message = "Can't Book Another Trip!, You already have a booked one.";
+      this.message = "Can't Book Another Trip!, You already have a booked one";
       response.sendRedirect("/booking/bus");
     }
 
@@ -142,21 +148,61 @@ public class BookingController {
       if (userId != null) {
         user user = new user();
         user.setId(userId);
-        booking.setUser(user);
-        booking.setBus(bus);
-        booking.setSource(bus.getSource());
-        booking.setDestination(bus.getDestination());
-        booking.setTime(bus.getTime());
-        booking.setPrice(bus.getPrice());
-        busBookingRepository.save(booking);
-        if (numberOfBookings == capacity) {
-          busRepository.delete(bus);
+        busBooking.setUser(user);
+        busBooking.setBus(bus);
+        busBooking.setSource(bus.getSource());
+        busBooking.setDestination(bus.getDestination());
+        busBooking.setTime(bus.getTime());
+        busBooking.setPrice(bus.getPrice());
+        busBookingRepository.save(busBooking);
+        if (numberOfBookings == capacity - 1) {
+          bus.setFull(1);
         }
-        message = "Your booking has been successfully saved";
-        response.sendRedirect("/booking/bus");
+        response.sendRedirect("/booking/user/my-bus-bookings");
       } else {
         response.sendRedirect("/User/login");
       }
     }
   }
+
+  @GetMapping("user/my-bus-bookings")
+  public ModelAndView viewBusBookings(HttpSession session, HttpServletResponse response) throws IOException {
+    ModelAndView mav = new ModelAndView("/tourist/viewBusBookings.html");
+    Long userId = (Long) session.getAttribute("user_id");
+
+    if (userId != null) {
+      Boolean busExists = busBookingRepository.existsByUserId(userId);
+      if (busExists) {
+        List<BusBooking> booking = this.busBookingRepository.findByUserId(userId);
+        mav.addObject("bookings", booking);
+      } else {
+        mav.addObject("bookings", null);
+        mav.addObject("message", "You don't have any bookings");
+      }
+    } else {
+      response.sendRedirect("/User/login");
+    }
+    return mav;
+  }
+
+  @GetMapping("bus-cancelled")
+  public void cancelBusBooking(@RequestParam int id, HttpServletResponse response) throws IOException {
+    BusBooking busBooking = busBookingRepository.findById(id).get();
+    Bus bus = busRepository.findById(busBooking.getBusId()).get();
+    if (bus.getFull() == 1) {
+      bus.setFull(0);
+    }
+
+    this.busBookingRepository.delete(busBooking);
+    response.sendRedirect("user/my-bus-bookings");
+  }
+
+  @GetMapping("admin/busBookings")
+  public ModelAndView viewAdminBusBookings(HttpServletResponse response) throws IOException {
+    ModelAndView mav = new ModelAndView("/admin/busBookings.html");
+    List<BusBooking> booking = this.busBookingRepository.findAll();
+    mav.addObject("bookings", booking);
+    return mav;
+  }
+
 }

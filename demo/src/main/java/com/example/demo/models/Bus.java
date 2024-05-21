@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id; 
+import jakarta.persistence.Id;
 import java.util.Objects;
 
 @Entity
@@ -15,20 +15,25 @@ public class Bus {
      private int id;
      private String source;
      private String destination;
-     private double price;
+     private double price; 
      private LocalTime time;
      private int capacity;
+     private int full;
 
      public Bus() {
      }
+     public Bus(int id) {
+          this.id = id;
+     }
 
-     public Bus(int id, String source, String destination, double price, LocalTime time, int capacity) {
+     public Bus(int id, String source, String destination, double price, LocalTime time, int capacity, int full) {
           this.id = id;
           this.source = source;
           this.destination = destination;
           this.price = price;
           this.time = time;
           this.capacity = capacity;
+          this.full = full;
      }
 
      public int getId() {
@@ -79,6 +84,14 @@ public class Bus {
           this.capacity = capacity;
      }
 
+     public int getFull() {
+          return this.full;
+     }
+
+     public void setFull(int full) {
+          this.full = full;
+     }
+
      public Bus id(int id) {
           setId(id);
           return this;
@@ -109,32 +122,40 @@ public class Bus {
           return this;
      }
 
+     public Bus full(int full) {
+          setFull(full);
+          return this;
+     }
+
      @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Bus)) {
-            return false;
-        }
-        Bus bus = (Bus) o;
-        return id == bus.id && Objects.equals(source, bus.source) && Objects.equals(destination, bus.destination) && price == bus.price && Objects.equals(time, bus.time) && capacity == bus.capacity;
+     public boolean equals(Object o) {
+          if (o == this)
+               return true;
+          if (!(o instanceof Bus)) {
+               return false;
+          }
+          Bus bus = (Bus) o;
+          return id == bus.id && Objects.equals(source, bus.source) && Objects.equals(destination, bus.destination)
+                    && price == bus.price && Objects.equals(time, bus.time) && capacity == bus.capacity
+                    && full == bus.full;
      }
 
      @Override
      public int hashCode() {
-          return Objects.hash(id, source, destination, price, time, capacity);
+          return Objects.hash(id, source, destination, price, time, capacity, full);
      }
 
      @Override
      public String toString() {
           return "{" +
-               " id='" + getId() + "'" +
-               ", source='" + getSource() + "'" +
-               ", destination='" + getDestination() + "'" +
-               ", price='" + getPrice() + "'" +
-               ", time='" + getTime() + "'" +
-               ", capacity='" + getCapacity() + "'" +
-               "}";
+                    " id='" + getId() + "'" +
+                    ", source='" + getSource() + "'" +
+                    ", destination='" + getDestination() + "'" +
+                    ", price='" + getPrice() + "'" +
+                    ", time='" + getTime() + "'" +
+                    ", capacity='" + getCapacity() + "'" +
+                    ", full='" + getFull() + "'" +
+                    "}";
      }
 
 }

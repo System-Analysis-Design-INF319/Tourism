@@ -50,3 +50,49 @@
 .table-data .order a.buttons:hover {
     background-color: #0056b3;
 }
+
+.success, .error {
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+/* Success message styling */
+.success {
+    color: #4CAF50;
+    background-color: #DFF2BF;
+    border-color: #D6E9C6;
+}
+
+/* Error message styling */
+.error {
+    color: #F44336;
+    background-color: #FFBABA;
+    border-color: #E5B7B7;
+}
+
+/* Close button styling */
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Link styling */
+#messageLink {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#messageLink:hover {
+    text-decoration: underline;
+}
