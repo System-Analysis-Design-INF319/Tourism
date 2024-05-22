@@ -85,5 +85,33 @@ public class LocalBusinessOwnerController {
         mav.addObject("localBusinessOwners", localBusinessOwners);
         return mav;
     }
+
+    @GetMapping("/editProfile/{id}")
+    public ModelAndView editProfileForm(@PathVariable("id") int id) {
+        LocalBusinessOwner localBusinessOwner = localBusinessOwnerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
+        ModelAndView mav = new ModelAndView("localBusinessOwner/editProfile");
+        mav.addObject("localBusinessOwner", localBusinessOwner);
+        return mav;
+    }
+
+    @PostMapping("/editProfile/{id}")
+    public ModelAndView editProfile(@PathVariable("id") int id, @ModelAttribute LocalBusinessOwner updatedLocalBusinessOwner) {
+        LocalBusinessOwner existingLocalBusinessOwner = localBusinessOwnerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
+        existingLocalBusinessOwner.setName(updatedLocalBusinessOwner.getName());
+        existingLocalBusinessOwner.setEmail(updatedLocalBusinessOwner.getEmail());
+        existingLocalBusinessOwner.setPhoneNumber(updatedLocalBusinessOwner.getPhoneNumber());
+        existingLocalBusinessOwner.setPassword(updatedLocalBusinessOwner.getPassword());
+
+        localBusinessOwnerRepository.save(existingLocalBusinessOwner);
+        return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    }
+
+    @GetMapping("/deleteProfile/{id}")
+    public ModelAndView deleteProfile(@PathVariable("id") int id) {
+        localBusinessOwnerRepository.deleteById(id);
+        return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    }
     
 }
