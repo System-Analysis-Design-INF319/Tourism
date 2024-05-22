@@ -142,7 +142,7 @@
         <li th:if="${username != null}" class="split"><a href="#"
             style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
         &nbsp;&nbsp;&nbsp;
-        <li th:if="${username != null}" class="split"><a href="/logout"
+        <li th:if="${username != null}" class="split"><a th:href="@{/User/logout}"
             style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
 
       </div>
