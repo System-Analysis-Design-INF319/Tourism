@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.models.Admin;
 import com.example.demo.models.HistoricalPlace;
 import com.example.demo.models.LocalBusinessOwner;
+import com.example.demo.repositories.AdminRepository;
 import com.example.demo.repositories.HistoricalPlaceRepository;
 import com.example.demo.repositories.LocalBusinessOwnerRepository;
 import com.example.demo.repositories.userRepository;
@@ -29,6 +31,9 @@ public class AdminController {
 
     @Autowired
     private userRepository UserRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
 
     @GetMapping("businessOwners")
@@ -130,6 +135,16 @@ public class AdminController {
         ModelAndView mav = new ModelAndView("/admin/tourists.html");
         mav.addObject("tourists", UserRepository.findAll());
         return mav;
-}
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView viewProfiles() {
+        List<Admin> admins = adminRepository.findAll();
+        ModelAndView mav = new ModelAndView("/admin/profile");
+        mav.addObject("admins", admins);
+        return mav;
+    }
+    
+
 
 }
