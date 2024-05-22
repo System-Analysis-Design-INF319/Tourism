@@ -144,7 +144,24 @@ public class AdminController {
         mav.addObject("admins", admins);
         return mav;
     }
-    
+
+    @GetMapping("/editProfile/{id}")
+    public ModelAndView editProfileForm(@PathVariable("id") int id) {
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid admin Id:" + id));
+        ModelAndView mav = new ModelAndView("admin/editProfile");
+        mav.addObject("admin", admin);
+        return mav;
+    }
+
+    @PostMapping("/editProfile/{id}")
+    public ModelAndView editProfile(@PathVariable("id") int id, @ModelAttribute Admin updatedAdmin) {
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid admin Id:" + id));
+        admin.setName(updatedAdmin.getName());
+        admin.setEmail(updatedAdmin.getEmail());
+        admin.setPhoneNumber(updatedAdmin.getPhoneNumber());
+        adminRepository.save(admin);
+        return new ModelAndView("redirect:/admin/profile");
+    }
 
 
 }
