@@ -163,5 +163,11 @@ public class AdminController {
         return new ModelAndView("redirect:/admin/profile");
     }
 
+    @GetMapping("/deleteProfile/{id}")
+    public ModelAndView deleteProfile(@PathVariable("id") int id) {
+        adminRepository.deleteById(id);
+        return new ModelAndView("redirect:/admin/profile");
+    }
+
 
 }
