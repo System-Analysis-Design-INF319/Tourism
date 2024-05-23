@@ -10,16 +10,18 @@ public class Admin {
     private int id;
     private String name;
     private String email;
+    private String password;
     private String phoneNumber;
 
 
     public Admin() {
     }
 
-    public Admin(int id, String name, String email, String phoneNumber) {
+    public Admin(int id, String name, String email, String password, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.phoneNumber = phoneNumber;
     }
 
@@ -47,6 +49,14 @@ public class Admin {
         this.email = email;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhoneNumber() {
         return this.phoneNumber;
     }
@@ -70,6 +80,11 @@ public class Admin {
         return this;
     }
 
+    public Admin password(String password) {
+        setPassword(password);
+        return this;
+    }
+
     public Admin phoneNumber(String phoneNumber) {
         setPhoneNumber(phoneNumber);
         return this;
@@ -83,12 +98,12 @@ public class Admin {
             return false;
         }
         Admin admin = (Admin) o;
-        return id == admin.id && Objects.equals(name, admin.name) && Objects.equals(email, admin.email) && Objects.equals(phoneNumber, admin.phoneNumber);
+        return id == admin.id && Objects.equals(name, admin.name) && Objects.equals(email, admin.email) && Objects.equals(password, admin.password) && Objects.equals(phoneNumber, admin.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, phoneNumber);
+        return Objects.hash(id, name, email, password, phoneNumber);
     }
 
     @Override
@@ -97,8 +112,10 @@ public class Admin {
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
             ", email='" + getEmail() + "'" +
+            ", password='" + getPassword() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             "}";
     }
+
+    }
     
-}
