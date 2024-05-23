@@ -87,9 +87,9 @@
           <ul class="navbar-list">
 
 
-            <!-- <li>
+            <li>
               <a th:href="@{/User/index}" class="navbar-link" data-nav-link>Home</a>
-            </li> -->
+            </li>
 
             <li>
               <a th:href="@{/booking/user/my-bookings}" class="navbar-link" data-nav-link>My Hidden Gem Bookings</a>
@@ -142,6 +142,7 @@
         <li th:if="${username != null}" class="split"><a href="#"
             style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
         &nbsp;&nbsp;&nbsp;
+        <li th:if="${username == 'admin'}" class="split"><a href="/admin">Admin</a></li>
         <li th:if="${username != null}" class="split"><a th:href="@{/User/logout}"
             style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
 
