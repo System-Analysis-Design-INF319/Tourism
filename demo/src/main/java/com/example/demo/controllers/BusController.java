@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.Bus;
-import com.example.demo.models.HiddenGem;
-import com.example.demo.models.LocalBusinessOwner;
+
 import com.example.demo.repositories.BusRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
