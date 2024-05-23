@@ -45,6 +45,7 @@
           <!-- <p class="section-subtitle">Uncover place</p> -->
 
           <h2 class="h2 section-title">Historical Places</h2>
+          <br>
 
 
           <ul class="popular-list">
@@ -53,7 +54,7 @@
               <div class="popular-card">
 
                 <figure class="card-img">
-                  <img th:src="@{${'/images/'+historicalPlace.image}}" alt="San miguel, italy" loading="lazy">
+                  <img th:src="@{${'/images/'+historicalPlace.image}}" alt="${historicalPlace.name}" loading="lazy">
                 </figure>
 
                 <div class="card-content">

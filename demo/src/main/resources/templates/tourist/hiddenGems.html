@@ -45,6 +45,7 @@
           <!-- <p class="section-subtitle">Uncover place</p> -->
 
           <h2 class="h2 section-title">Hidden Gem</h2>
+          <br>
 
           <!-- <p class="section-text">
               Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
@@ -58,7 +59,7 @@
               <div class="popular-card">
 
                 <figure class="card-img">
-                  <img th:src="@{${'/images/'+hiddenGem.image}}" alt="San miguel, italy" loading="lazy">
+                  <img th:src="@{${'/images/'+hiddenGem.image}}" alt="${hiddenGem.name}" loading="lazy">
                 </figure>
 
                 <div class="card-content">

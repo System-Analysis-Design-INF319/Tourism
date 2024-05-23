@@ -363,12 +363,12 @@ body { background: var(--white); }
 \*-----------------------------------*/
 
 .hero {
-  background-image: url("/images/hero-banner.jpg");
+  background-image: url("/images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-color: hsla(0, 0%, 0%, 0.7);
-  background-blend-mode: overlay;
+  /* background-blend-mode: overlay; */
   display: grid;
   place-items: center;
   min-height: 600px;
@@ -376,12 +376,14 @@ body { background: var(--white); }
   padding-top: 125px;
 }
 
-.hero-title { margin-bottom: 20px; }
+/* .hero-title { margin-bottom: 20px; } */
 
 .hero-text {
   color: var(--white);
-  font-size: var(--fs-5);
+  /* font-size: var(--fs-5); */
+  font-size: 25px;
   margin-bottom: 40px;
+  text-align: left;
 }
 
 .btn-group {
@@ -1113,6 +1115,7 @@ address {
     left: 0;
     width: 100%;
     background: var(--white);
+    /* background: #D5AC80; */
     color: var(--onyx);
     box-shadow: 0 2px 5px hsla(0, 0%, 0%, 0.08);
     transition: var(--transition);
@@ -1132,7 +1135,8 @@ address {
   .navbar-list li { border-bottom: none; }
 
   .navbar-link {
-    color: var(--white);
+    /* color: var(--white); */
+    color: #D5AC80;
     --fs-4: 16px;
     font-weight: unset;
     text-transform: uppercase;
