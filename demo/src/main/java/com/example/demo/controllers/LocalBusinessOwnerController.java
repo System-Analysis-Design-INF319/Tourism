@@ -138,5 +138,39 @@ public class LocalBusinessOwnerController {
         this.hiddenGemRepository.deleteById(id);
         return new ModelAndView("redirect:/LocalBusinessOwner/hiddenGemInfo"); 
     }
-
+    @GetMapping("/profile")
+    public ModelAndView viewProfiles() {
+    List<LocalBusinessOwner> localBusinessOwners = LocalBusinessOwnerRepository.findAll();
+    ModelAndView mav = new ModelAndView("localBusinessOwner/profile");
+    mav.addObject("localBusinessOwners", localBusinessOwners);
+    return mav;
+    }
+    
+    @GetMapping("/editProfile/{id}")
+    public ModelAndView editProfileForm(@PathVariable("id") int id) {
+    LocalBusinessOwner localBusinessOwner = LocalBusinessOwnerRepository.findById(id)
+    .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
+    ModelAndView mav = new ModelAndView("localBusinessOwner/editProfile");
+    mav.addObject("localBusinessOwner", localBusinessOwner);
+    return mav;
+    }
+    
+    @PostMapping("/editProfile/{id}")
+    public ModelAndView editProfile(@PathVariable("id") int id, @ModelAttribute LocalBusinessOwner updatedLocalBusinessOwner) {
+    LocalBusinessOwner existingLocalBusinessOwner = LocalBusinessOwnerRepository.findById(id)
+    .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
+    existingLocalBusinessOwner.setName(updatedLocalBusinessOwner.getName());
+    existingLocalBusinessOwner.setEmail(updatedLocalBusinessOwner.getEmail());
+    existingLocalBusinessOwner.setPhoneNumber(updatedLocalBusinessOwner.getPhoneNumber());
+    existingLocalBusinessOwner.setPassword(updatedLocalBusinessOwner.getPassword());
+    
+    LocalBusinessOwnerRepository.save(existingLocalBusinessOwner);
+    return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    }
+    
+    @GetMapping("/deleteProfile/{id}")
+    public ModelAndView deleteProfile(@PathVariable("id") int id) {
+    LocalBusinessOwnerRepository.deleteById(id);
+    return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    }
 }

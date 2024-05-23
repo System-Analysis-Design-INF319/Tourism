@@ -258,7 +258,7 @@ body { background: var(--white); }
   object-fit: fill;
   height: 140px;
   width: 180px;
-  margin: -27px 0px 190px -170px;
+  margin: -27px 0px 190px -150px;
 }
 
 .search-btn,
@@ -345,7 +345,7 @@ body { background: var(--white); }
 .navbar-list li { border-bottom: 1px solid hsla(0, 0%, 0%, 0.1); }
 
 .navbar-link {
-  padding: 15px 20px;
+  padding: 15px 15px;
   color: var(--jet);
   font-weight: var(--fw-500);
   font-size: var(--fs-4);
@@ -1185,7 +1185,7 @@ address {
   #searchInput {
     border: 2px solid #ccc;
     border-radius: 20px; /* Makes the input field rounded */
-    padding: 8px 10px;
+    padding: 8px 8px;
     width: 200px; /* Adjust the width as needed */
     outline: none;
     transition: width 0.4s ease-in-out;
