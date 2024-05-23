@@ -29,7 +29,10 @@ public class LocalBusinessOwnerController {
     @Autowired
     private LocalBusinessOwnerRepository LocalBusinessOwnerRepository;
 
-
+    @GetMapping("/dashboard")
+    public ModelAndView adminIndex() {         
+        return new ModelAndView("LocalBusinessOwner/dashboard.html");
+    }
     @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView("/LocalBusinessOwner/login.html");
@@ -63,7 +66,7 @@ public class LocalBusinessOwnerController {
         // Redirect to the index page after successful login
         session.setAttribute("LocalBusinessOwner_id", dblocalBusinessOwner.getId());
         session.setAttribute("name", dblocalBusinessOwner.getName());
-        return new ModelAndView("redirect:/User/index");
+        return new ModelAndView("redirect:/LocalBusinessOwner/dashboard");
 
     }
 
