@@ -134,19 +134,21 @@
               </div>
             </li>
 
+            <li th:if="${username != null}" class="split"><a href="#"
+              style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
+          &nbsp;&nbsp;&nbsp;
+          <li th:if="${username == 'admin'}" class="split"><a href="/admin">Admin</a></li>
+          <li th:if="${username != null}" class="split"><a th:href="@{/User/logout}"
+              style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+  
+
           </ul>
 
         </nav>
 
-        <button class="btn btn-primary"><a th:href="@{/User/login}" style="color: white;">login</a></button>&nbsp;
+        <button class="btn btn-primary"th:if="${username == null}" ><a th:href="@{/User/login}" style="color: white;">login</a></button>&nbsp;
 
-        <li th:if="${username != null}" class="split"><a href="#"
-            style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
-        &nbsp;&nbsp;&nbsp;
-        <li th:if="${username == 'admin'}" class="split"><a href="/admin">Admin</a></li>
-        <li th:if="${username != null}" class="split"><a th:href="@{/User/logout}"
-            style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
-
+        
       </div>
     </div>
 
