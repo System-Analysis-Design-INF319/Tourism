@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.Admin;
@@ -18,6 +20,8 @@ import com.example.demo.repositories.AdminRepository;
 import com.example.demo.repositories.HistoricalPlaceRepository;
 import com.example.demo.repositories.LocalBusinessOwnerRepository;
 import com.example.demo.repositories.userRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -35,12 +39,53 @@ public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
 
+    @GetMapping("/dashboard")
+    public ModelAndView adminIndex() {         
+        return new ModelAndView("admin/dashboard.html");
+    }
 
     @GetMapping("businessOwners")
     public ModelAndView getAllBusinessOwners() {
         ModelAndView mav = new ModelAndView("/admin/LocalBusinessOwners.html");
         mav.addObject("businessOwners", localBusinessOwnerRepository.findAll());
         return mav;
+    }
+
+     @GetMapping("/login")
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView("/admin/login.html");
+        mav.addObject("name");
+        return mav;
+    }
+    @PostMapping("/login")
+    public ModelAndView loginProcess(@RequestParam("name") String name,
+            @RequestParam("password") String password, HttpSession session) {
+        ModelAndView mav = new ModelAndView("/admin/login.html");
+
+        if (name == null || password == null) {
+            mav.addObject("loginError", "Please provide both name and password");
+            return mav;
+        }
+
+        Admin dbadmin = adminRepository.findByName(name);
+        if (dbadmin == null) {
+            mav.addObject("loginError", "name not found");
+            mav.addObject("loginErrorField", "name");
+            return mav;
+        }
+
+        boolean isPasswordMatched = BCrypt.checkpw(password, dbadmin.getPassword());
+        if (!isPasswordMatched) {
+            mav.addObject("loginError", "Incorrect password");
+            mav.addObject("loginErrorField", "password");
+            return mav;
+        }
+
+        // Redirect to the index page after successful login
+        session.setAttribute("admin_id", dbadmin.getId());
+        session.setAttribute("name", dbadmin.getName());
+        return new ModelAndView("redirect:/admin/dashboard");
+
     }
 
     @GetMapping("/addBusinessOwner")
@@ -52,6 +97,8 @@ public class AdminController {
 
     @PostMapping("/addBusinessOwner")
     public ModelAndView addBusinessOwner(@ModelAttribute LocalBusinessOwner businessOwner) {
+          String encodedPassword = BCrypt.hashpw(businessOwner.getPassword(), BCrypt.gensalt(12));
+          businessOwner.setPassword(encodedPassword);
         localBusinessOwnerRepository.save(businessOwner);
         return new ModelAndView("redirect:/admin/businessOwners"); 
     }
