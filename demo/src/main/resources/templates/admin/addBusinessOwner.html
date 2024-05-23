@@ -47,10 +47,11 @@
 			<div class="table-data">
 				<div class="order">
 					<form class="form" th:action="@{/admin/addBusinessOwner}" th:object="${businessOwner}" method="post">
-						<div class="input-box" >
+						 <div class="input-box" >
 							<label for="name">Name</label>
 							<input type="text" id="name" th:field="*{name}" placeholder="name" required><br>
 						</div>
+						
 						<div class="input-box">
 							<label for="email">Email</label>
 							<input type="text" id="email" th:field="*{email}" placeholder="email" required><br>
@@ -66,7 +67,7 @@
 						</div>
 						<div>
 							<button type="submit" name="submit" id="submit-button" value="submit">Add Local Business Owner</button>
-						</div>
+						</div> 
 					</form>
 				</div>
 			</div>
