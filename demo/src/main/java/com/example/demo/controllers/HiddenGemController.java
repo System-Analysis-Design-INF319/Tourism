@@ -27,6 +27,8 @@ public class HiddenGemController {
     @GetMapping("hiddenGems")
     public ModelAndView getAllhiddenGems(HttpSession session) {
         ModelAndView mav = new ModelAndView("/tourist/hiddenGems.html");
+        mav.addObject("username", (String) session.getAttribute("username"));
+        mav.addObject ("usertype", (String) session.getAttribute("usertype"));
         List<HiddenGem> hiddenGems = this.hiddenGemRepository.findAll();
         mav.addObject("hiddenGems", hiddenGems);
         return mav;

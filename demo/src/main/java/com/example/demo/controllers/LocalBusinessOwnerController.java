@@ -2,14 +2,15 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.HiddenGem;
@@ -17,16 +18,76 @@ import com.example.demo.models.LocalBusinessOwner;
 import com.example.demo.repositories.HiddenGemRepository;
 import com.example.demo.repositories.LocalBusinessOwnerRepository;
 
-@Controller
+import jakarta.servlet.http.HttpSession;
+
+@RestController
 @RequestMapping("/LocalBusinessOwner")
 public class LocalBusinessOwnerController {
-
-    @Autowired
-    private LocalBusinessOwnerRepository localBusinessOwnerRepository;
     
     @Autowired
     private HiddenGemRepository hiddenGemRepository;
+    @Autowired
+    private LocalBusinessOwnerRepository LocalBusinessOwnerRepository;
 
+    @GetMapping("/dashboard")
+    public ModelAndView adminIndex() {         
+        return new ModelAndView("LocalBusinessOwner/dashboard.html");
+    }
+    @GetMapping("/login")
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView("/LocalBusinessOwner/login.html");
+        mav.addObject("name");
+        return mav;
+    }
+    @PostMapping("/login")
+    public ModelAndView loginProcess(@RequestParam("name") String name,
+            @RequestParam("password") String password, HttpSession session) {
+        ModelAndView mav = new ModelAndView("/LocalBusinessOwner/login.html");
+
+        if (name == null || password == null) {
+            mav.addObject("loginError", "Please provide both name and password");
+            return mav;
+        }
+
+        LocalBusinessOwner dblocalBusinessOwner = LocalBusinessOwnerRepository.findByName(name);
+        if (dblocalBusinessOwner == null) {
+            mav.addObject("loginError", "name not found");
+            mav.addObject("loginErrorField", "name");
+            return mav;
+        }
+
+        boolean isPasswordMatched = BCrypt.checkpw(password, dblocalBusinessOwner.getPassword());
+        if (!isPasswordMatched) {
+            mav.addObject("loginError", "Incorrect password");
+            mav.addObject("loginErrorField", "password");
+            return mav;
+        }
+
+        // Redirect to the index page after successful login
+        session.setAttribute("LocalBusinessOwner_id", dblocalBusinessOwner.getId());
+        session.setAttribute("name", dblocalBusinessOwner.getName());
+        return new ModelAndView("redirect:/LocalBusinessOwner/dashboard");
+
+    }
+
+
+    // LocalBusinessOwner dblocalBusinessOwner = this.LocalBusinessOwnerRepository.findByName(name);
+    // System.out.println(name);
+    // if (dblocalBusinessOwner != null && BCrypt.checkpw(password, dblocalBusinessOwner.getPassword())) {
+    //     System.out.println(dblocalBusinessOwner.getName());
+    //     session.setAttribute("LocalBusinessOwner_id", dblocalBusinessOwner.getId());
+    //     session.setAttribute("name", dblocalBusinessOwner.getName());
+    //     System.out.println("true");
+    //     return new RedirectView("addHiddenGem");
+      
+        
+    //     // mav.addObject("loginError", "name not found");
+    //     // mav.addObject("loginErrorField", "name");
+    //     // return mav;
+    // }
+    // else{
+    //     return new RedirectView("/LocalBusinessOwner/login");
+    // }
     @GetMapping("addHiddenGem")
     public ModelAndView addHiddenGems() {
         ModelAndView mav = new ModelAndView("/localBusinessOwner/addHiddenGem.html");
@@ -77,41 +138,39 @@ public class LocalBusinessOwnerController {
         this.hiddenGemRepository.deleteById(id);
         return new ModelAndView("redirect:/LocalBusinessOwner/hiddenGemInfo"); 
     }
-
     @GetMapping("/profile")
     public ModelAndView viewProfiles() {
-        List<LocalBusinessOwner> localBusinessOwners = localBusinessOwnerRepository.findAll();
-        ModelAndView mav = new ModelAndView("localBusinessOwner/profile"); 
-        mav.addObject("localBusinessOwners", localBusinessOwners);
-        return mav;
-    }
-
-    @GetMapping("/editProfile/{id}")
-    public ModelAndView editProfileForm(@PathVariable("id") int id) {
-        LocalBusinessOwner localBusinessOwner = localBusinessOwnerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
-        ModelAndView mav = new ModelAndView("localBusinessOwner/editProfile");
-        mav.addObject("localBusinessOwner", localBusinessOwner);
-        return mav;
-    }
-
-    @PostMapping("/editProfile/{id}")
-    public ModelAndView editProfile(@PathVariable("id") int id, @ModelAttribute LocalBusinessOwner updatedLocalBusinessOwner) {
-        LocalBusinessOwner existingLocalBusinessOwner = localBusinessOwnerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
-        existingLocalBusinessOwner.setName(updatedLocalBusinessOwner.getName());
-        existingLocalBusinessOwner.setEmail(updatedLocalBusinessOwner.getEmail());
-        existingLocalBusinessOwner.setPhoneNumber(updatedLocalBusinessOwner.getPhoneNumber());
-        existingLocalBusinessOwner.setPassword(updatedLocalBusinessOwner.getPassword());
-
-        localBusinessOwnerRepository.save(existingLocalBusinessOwner);
-        return new ModelAndView("redirect:/LocalBusinessOwner/profile");
-    }
-
-    @GetMapping("/deleteProfile/{id}")
-    public ModelAndView deleteProfile(@PathVariable("id") int id) {
-        localBusinessOwnerRepository.deleteById(id);
-        return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    List<LocalBusinessOwner> localBusinessOwners = LocalBusinessOwnerRepository.findAll();
+    ModelAndView mav = new ModelAndView("localBusinessOwner/profile");
+    mav.addObject("localBusinessOwners", localBusinessOwners);
+    return mav;
     }
     
+    @GetMapping("/editProfile/{id}")
+    public ModelAndView editProfileForm(@PathVariable("id") int id) {
+    LocalBusinessOwner localBusinessOwner = LocalBusinessOwnerRepository.findById(id)
+    .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
+    ModelAndView mav = new ModelAndView("localBusinessOwner/editProfile");
+    mav.addObject("localBusinessOwner", localBusinessOwner);
+    return mav;
+    }
+    
+    @PostMapping("/editProfile/{id}")
+    public ModelAndView editProfile(@PathVariable("id") int id, @ModelAttribute LocalBusinessOwner updatedLocalBusinessOwner) {
+    LocalBusinessOwner existingLocalBusinessOwner = LocalBusinessOwnerRepository.findById(id)
+    .orElseThrow(() -> new IllegalArgumentException("Invalid local business owner Id:" + id));
+    existingLocalBusinessOwner.setName(updatedLocalBusinessOwner.getName());
+    existingLocalBusinessOwner.setEmail(updatedLocalBusinessOwner.getEmail());
+    existingLocalBusinessOwner.setPhoneNumber(updatedLocalBusinessOwner.getPhoneNumber());
+    existingLocalBusinessOwner.setPassword(updatedLocalBusinessOwner.getPassword());
+    
+    LocalBusinessOwnerRepository.save(existingLocalBusinessOwner);
+    return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    }
+    
+    @GetMapping("/deleteProfile/{id}")
+    public ModelAndView deleteProfile(@PathVariable("id") int id) {
+    LocalBusinessOwnerRepository.deleteById(id);
+    return new ModelAndView("redirect:/LocalBusinessOwner/profile");
+    }
 }

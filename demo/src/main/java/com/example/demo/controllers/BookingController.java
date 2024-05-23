@@ -45,6 +45,8 @@ public class BookingController {
   public ModelAndView BookHiddenGem(@RequestParam int id, HttpSession session) {
     HiddenGem hiddenGem = hiddenGemRepository.findById(id);
     ModelAndView mav = new ModelAndView("/tourist/hiddengemBooking.html");
+    mav.addObject("username", (String) session.getAttribute("username"));
+    mav.addObject ("usertype", (String) session.getAttribute("usertype"));
     ArrayList<String> days = hiddenGem.getDays(hiddenGem.getStartDay(), hiddenGem.getEndDay());
     ArrayList<String> hours = hiddenGem.getTime(hiddenGem.getStartWorkingTime(), hiddenGem.getEndWorkingTime());
     mav.addObject("days", days);
@@ -56,6 +58,7 @@ public class BookingController {
   @PostMapping("booked")
   public void book(@RequestParam int id, @ModelAttribute HiddenGemBooking booking, HttpServletResponse response,
       HttpSession session) throws IOException {
+        
     HiddenGem hiddenGem = hiddenGemRepository.findById(id);
     Long userId = (Long) session.getAttribute("user_id");
 
@@ -78,6 +81,9 @@ public class BookingController {
   @GetMapping("user/my-bookings")
   public ModelAndView viewBookings(HttpSession session, HttpServletResponse response) throws IOException {
     ModelAndView mav = new ModelAndView("/tourist/viewBookings.html");
+    mav.addObject("username", (String) session.getAttribute("username"));
+    mav.addObject ("usertype", (String) session.getAttribute("usertype"));
+  
     Long userId = (Long) session.getAttribute("user_id");
     if (userId != null) {
       Boolean exists = hiddenGemBookingRepository.existsByUserId(userId);
@@ -120,8 +126,11 @@ public class BookingController {
   /****** Bus Booking ******/
 
   @GetMapping("bus")
-  public ModelAndView bookBus() {
+  public ModelAndView bookBus(HttpSession session) {
     ModelAndView mav = new ModelAndView("/tourist/busBooking.html");
+    mav.addObject("username", (String) session.getAttribute("username"));
+    mav.addObject ("usertype", (String) session.getAttribute("usertype"));
+  
     List<Bus> busses = busRepository.findByFullCapacity();
     mav.addObject("busses", busses);
     mav.addObject("message", this.message);
@@ -168,6 +177,9 @@ public class BookingController {
   @GetMapping("user/my-bus-bookings")
   public ModelAndView viewBusBookings(HttpSession session, HttpServletResponse response) throws IOException {
     ModelAndView mav = new ModelAndView("/tourist/viewBusBookings.html");
+    mav.addObject("username", (String) session.getAttribute("username"));
+    mav.addObject ("usertype", (String) session.getAttribute("usertype"));
+  
     Long userId = (Long) session.getAttribute("user_id");
 
     if (userId != null) {

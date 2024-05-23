@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.Bus;
 import com.example.demo.repositories.BusRepository;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -28,7 +31,7 @@ public class BusController {
         return mav;
     }
     @GetMapping("addBus")
-    public ModelAndView addBus(){
+    public ModelAndView addBus(HttpSession session){
         ModelAndView mav = new ModelAndView("/admin/addTransportation.html");
         Bus newBus= new Bus();
         newBus.setFull(0);

@@ -1,100 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
-	<link rel="stylesheet" href="../../static/css/admin/dashboard.css">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/css/admin/dashboard.css">
 
-	<title>AdminHub</title>
+    <title>AdminHub</title>
 </head>
 <body>
-	<section th:replace="fragments/adminSidebar :: adminSidebar"></section>
+    <section th:replace="fragments/adminSidebar :: adminSidebar"></section>
 
-	<!-- CONTENT -->
-	<section id="content">
-		<nav th:replace="fragments/adminNavbar :: adminNavbar"></nav>
+    <!-- CONTENT -->
+    <section id="content">
+        <nav th:replace="fragments/adminNavbar :: adminNavbar"></nav>
 
-		<!-- MAIN -->
-		<main>
-			
-			<div class="head-title">
-				<div class="left">
-					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Home</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+        <!-- MAIN -->
+        <main>
+            
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        
+                        <li>
+                            <a href="/admin"></a>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right' ></i></li>
+                        <li>
+                            <a class="active" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-			<ul class="box-info">
-				<li>
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">
-						<h3>1020</h3>
-						<p>New Booking</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-group' ></i>
-					<span class="text">
-						<h3>2834</h3>
-						<p>Visitors</p>
-					</span>
-				</li>
-			</ul>
+            <ul class="box-info">
+                <li>
+                    <i class='bx bxs-calendar-check' ></i>
+                    <span class="text">
+                        <h3>1020</h3>
+                        <p>New Booking</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">
+                        <h3>2834</h3>
+                        <p>Visitors</p>
+                    </span>
+                </li>
+            </ul>
 
 
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Recent Users</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>User</th>
-								<th>Date Order</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-									<td>01-10-2021</td>
-								</td>
-								
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-							</tr>
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</main>
-		<!-- MAIN -->
-	</section>
-	<!-- CONTENT -->
-	
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Recent Users</h3>
+                        <i class='bx bx-search' ></i>
+                        <i class='bx bx-filter' ></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Date Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="img/people.png">
+                                    <p>John Doe</p>
+                                    <td>01-10-2021</td>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/people.png">
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+    
 
-	<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

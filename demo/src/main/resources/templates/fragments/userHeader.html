@@ -75,7 +75,7 @@
           <div class="navbar-top">
 
             <a href="#" class="logo">
-              <img src="/images/logo-blue.svg" alt="Tourly logo">
+              <img src="/images/logAE.svg" alt="Authentic Egypt">
             </a>
 
             <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
@@ -87,15 +87,15 @@
           <ul class="navbar-list">
 
 
-            <!-- <li>
-              <a th:href="@{/User/index}" class="navbar-link" data-nav-link>Home</a>
-            </li> -->
+            <li>
+              <a th:href="@{/User/index}" class="logo" data-nav-link><img src="/images/logoAE.svg" alt="Authentic Egypt"></a>
+            </li>
 
             <li>
-              <a th:href="@{/booking/user/my-bookings}" class="navbar-link" data-nav-link>My Hidden Gem Bookings</a>
+              <a th:href="@{/booking/user/my-bookings}" class="navbar-link" data-nav-link> Hidden Gem Bookings</a>
             </li>
             <li>
-              <a th:href="@{/booking/user/my-bus-bookings}" class="navbar-link" data-nav-link>My Bus Bookings</a>
+              <a th:href="@{/booking/user/my-bus-bookings}" class="navbar-link" data-nav-link> Bus Bookings</a>
             </li>
             <li>
               <a th:href="@{/hiddenGems}" class="navbar-link" data-nav-link>Hidden Gems</a>
@@ -123,9 +123,9 @@
                   <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
                 </li> -->
 
-            <li>
+            <!-- <li>
               <a th:href="@{/User/login}" class="navbar-link" data-nav-link>login</a>
-            </li>
+            </li> -->
 
             <li>
               <div class="search-container">
@@ -134,17 +134,21 @@
               </div>
             </li>
 
+            <li th:if="${username != null}" class="split"><a href="#"
+              style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
+          &nbsp;&nbsp;&nbsp;
+          <li th:if="${username == 'admin'}" class="split"><a href="/admin">Admin</a></li>
+          <li th:if="${username != null}" class="split"><a th:href="@{/User/logout}"
+              style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+  
+
           </ul>
 
         </nav>
 
-        <button class="btn btn-primary">Book Now</button>&nbsp;
-        <li th:if="${username != null}" class="split"><a href="#"
-            style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
-        &nbsp;&nbsp;&nbsp;
-        <li th:if="${username != null}" class="split"><a th:href="@{/User/logout}"
-            style="color: red; text-decoration: underline;"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+        <button class="btn btn-primary"th:if="${username == null}" ><a th:href="@{/User/login}" style="color: white;">login</a></button>&nbsp;
 
+        
       </div>
     </div>
 

@@ -16,6 +16,7 @@ import com.example.demo.repositories.CreditCardRepository;
 
 @RequestMapping("/paydeposit")
 public class CreditCardController {
+    @SuppressWarnings("unused")
     @Autowired
     private CreditCardRepository creditcardRepository;
   
