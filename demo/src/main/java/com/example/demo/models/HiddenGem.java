@@ -5,12 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 
 
 import java.util.ArrayList;
@@ -31,11 +29,11 @@ public class HiddenGem {
     private LocalTime startWorkingTime;
     private LocalTime endWorkingTime;
 
-    @Column(name = "local_business_owner_id", updatable = false, insertable = false)
-    private int businessOwnerId;
+    // @Column(name = "local_business_owner_id", updatable = false, insertable = false)
+    // private int businessOwnerId;
 
-    @OneToOne
-    LocalBusinessOwner localBusinessOwner;
+    // @OneToOne
+    // LocalBusinessOwner localBusinessOwner;
 
     public HiddenGem() {
     }
