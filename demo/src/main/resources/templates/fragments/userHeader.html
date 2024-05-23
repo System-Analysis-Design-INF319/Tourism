@@ -75,7 +75,7 @@
           <div class="navbar-top">
 
             <a href="#" class="logo">
-              <img src="/images/logo-blue.svg" alt="Tourly logo">
+              <img src="/images/logAE.svg" alt="Authentic Egypt">
             </a>
 
             <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
@@ -88,7 +88,7 @@
 
 
             <li>
-              <a th:href="@{/User/index}" class="navbar-link" data-nav-link>Home</a>
+              <a th:href="@{/User/index}" class="logo" data-nav-link><img src="/images/logoAE.svg" alt="Authentic Egypt"></a>
             </li>
 
             <li>
@@ -123,9 +123,9 @@
                   <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
                 </li> -->
 
-            <li>
+            <!-- <li>
               <a th:href="@{/User/login}" class="navbar-link" data-nav-link>login</a>
-            </li>
+            </li> -->
 
             <li>
               <div class="search-container">
@@ -138,7 +138,8 @@
 
         </nav>
 
-        <button class="btn btn-primary">Book Now</button>&nbsp;
+        <button class="btn btn-primary"><a th:href="@{/User/login}" style="color: white;">login</a></button>&nbsp;
+
         <li th:if="${username != null}" class="split"><a href="#"
             style="color: red; text-decoration: underline;">Welcome <span th:text="${username}"></a></li>
         &nbsp;&nbsp;&nbsp;
