@@ -28,6 +28,8 @@ public class IndexController {
     @GetMapping("historicalPlaces")
     public ModelAndView getAllHistoricalPlaces(HttpSession session) {
         ModelAndView mav = new ModelAndView("/tourist/historicalPlaces.html");
+        mav.addObject("username", (String) session.getAttribute("username"));
+        mav.addObject ("usertype", (String) session.getAttribute("usertype"));
         List<HistoricalPlace> historicalPlaces = this.historicalPlaceRepository.findAll();
         mav.addObject("historicalPlaces", historicalPlaces);
         return mav;
