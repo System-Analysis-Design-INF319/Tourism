@@ -215,6 +215,10 @@ public class AdminController {
         adminRepository.deleteById(id);
         return new ModelAndView("redirect:/admin/profile");
     }
-
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session) {
+        session.invalidate();
+        return new ModelAndView("redirect:/admin/login");
+    }
 
 }

@@ -173,4 +173,10 @@ public class LocalBusinessOwnerController {
     LocalBusinessOwnerRepository.deleteById(id);
     return new ModelAndView("redirect:/LocalBusinessOwner/profile");
     }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session) {
+        session.invalidate();
+        return new ModelAndView("redirect:/LocalBusinessOwner/login");
+    }
 }
